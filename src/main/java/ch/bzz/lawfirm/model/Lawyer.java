@@ -1,6 +1,6 @@
 package ch.bzz.lawfirm.model;
 
-import java.util.Vector;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
@@ -8,8 +8,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 
 public class Lawyer {
+    /*@JsonIgnore
+    private Client[] clients;*/
     @JsonIgnore
-    private Vector<Client> clients;
+    private int cntr = 0;
 
     private int lawyerID;
     private String firstname;
@@ -76,11 +78,11 @@ public class Lawyer {
         this.winrate = winrate;
     }
 
-    public Client getClient(int index) {
-        return clients.get(index);
+ /*   public Client getClient(int index) {
+        return clients[index];
     }
 
     public void addClients(Client client) {
-        this.clients.add(client);
-    }
+        this.clients[cntr] = client;
+    }*/
 }
