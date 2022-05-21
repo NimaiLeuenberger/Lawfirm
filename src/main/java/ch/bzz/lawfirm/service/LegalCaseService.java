@@ -1,6 +1,7 @@
 package ch.bzz.lawfirm.service;
 
 import ch.bzz.lawfirm.model.Lawyer;
+import ch.bzz.lawfirm.model.LegalCase;
 import ch.bzz.lawfirm.data.DataHandler;
 
 import javax.ws.rs.GET;
@@ -12,46 +13,46 @@ import javax.ws.rs.core.Response;
 import java.util.List;
 
 /**
- * lawyer service
+ * legal case service
  */
 
-@Path("lawyer")
-public class LawyerService {
+@Path("legalCase")
+public class LegalCaseService {
 
     /**
-     * lists all lawyers
+     * lists all legal cases
      *
-     * @return lawyerList
+     * @return legalCaseList
      */
 
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listLawyers(){
-        List<Lawyer> lawyerList = DataHandler.getInstance().readAllLawyers();
+    public Response listLegalCases(){
+        List<LegalCase> legalCaseList = DataHandler.getInstance().readAllLegalCases();
         return Response
                 .status(200)
-                .entity(lawyerList)
+                .entity(legalCaseList)
                 .build();
     }
 
     /**
-     * reads a lawyer by its id
+     * reads a legal case by its id
      *
-     * @param lawyerID
-     * @return a lawyer
+     * @param legalCaseID
+     * @return a legal case
      */
 
     @GET
     @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response readLawyer(
-            @QueryParam("id") int lawyerID
+    public Response readLegalCase(
+            @QueryParam("id") int legalCaseID
     ){
-        Lawyer lawyer = DataHandler.getInstance().readLawyerByID(lawyerID);
+        LegalCase legalCase = DataHandler.getInstance().readLegalCaseByID(legalCaseID);
         return Response
                 .status(200)
-                .entity(lawyer)
+                .entity(legalCase)
                 .build();
     }
 }

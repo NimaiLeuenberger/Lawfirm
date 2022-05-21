@@ -2,6 +2,7 @@ package ch.bzz.lawfirm.data;
 
 import ch.bzz.lawfirm.model.Client;
 import ch.bzz.lawfirm.model.Lawyer;
+import ch.bzz.lawfirm.model.LegalCase;
 import ch.bzz.lawfirm.service.Config;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,6 +19,7 @@ public class DataHandler {
     private static DataHandler instance = null;
     private List<Lawyer> lawyerList;
     private List<Client> clientList;
+    private List<LegalCase> legalCaseList;
 
     /**
      * private constructor defeats instantiation
@@ -27,6 +29,8 @@ public class DataHandler {
         readLawyerJSON();
         setClientList(new ArrayList<>());
         readClientJSON();
+        setLegalCaseList(new ArrayList<>());
+        readLegalCaseJSON();
     }
 
     /**
@@ -74,7 +78,7 @@ public class DataHandler {
 
     /**
      * reads a clients by its id
-     * @param
+     * @param clientID
      * @return the Client (null=not found)
      */
     public Client readClientByID(int clientID) {
@@ -85,6 +89,29 @@ public class DataHandler {
             }
         }
         return client;
+    }
+
+    /**
+     * reads all Legal Cases
+     * @return list of legal cases
+     */
+    public List<LegalCase> readAllLegalCases() {
+        return getLegalCaseList();
+    }
+
+    /**
+     * reads a legal case by its id
+     * @param legalCaseID
+     * @return the legal case (null=not found)
+     */
+    public LegalCase readLegalCaseByID(int legalCaseID) {
+        LegalCase legalCase = null;
+        for (LegalCase entry : getLegalCaseList()) {
+            if (entry.getLegalCaseID()== (legalCaseID)) {
+                legalCase = entry;
+            }
+        }
+        return legalCase;
     }
 
     /**
@@ -125,6 +152,27 @@ public class DataHandler {
             ex.printStackTrace();
         }
     }
+
+    /**
+     * reads the legal cases from the JSON-file
+     */
+    private void readLegalCaseJSON() {
+        try {
+            byte[] jsonData = Files.readAllBytes(
+                    Paths.get(
+                            Config.getProperty("legalcaseJSON")
+                    )
+            );
+            ObjectMapper objectMapper = new ObjectMapper();
+            LegalCase[] legalCases = objectMapper.readValue(jsonData, LegalCase[].class);
+            for (LegalCase legalCase : legalCases) {
+                getLegalCaseList().add(legalCase);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
     /**
      * gets lawyerList
      *
@@ -161,5 +209,21 @@ public class DataHandler {
         this.clientList = clientList;
     }
 
+    /**
+     * gets legalCaseList
+     *
+     * @return value of legalCaseList
+     */
+    private List<LegalCase> getLegalCaseList() {
+        return legalCaseList;
+    }
 
+    /**
+     * sets legalCaseList
+     *
+     * @param legalCaseList the value to set
+     */
+    private void setLegalCaseList(List<LegalCase> legalCaseList) {
+        this.legalCaseList = legalCaseList;
+    }
 }
