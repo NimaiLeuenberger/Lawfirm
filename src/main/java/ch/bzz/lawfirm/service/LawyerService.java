@@ -9,6 +9,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -16,19 +18,30 @@ import java.util.List;
  */
 
 @Path("lawyer")
-public class LawyerService {
+public class LawyerService{
 
     /**
      * lists all lawyers
      *
+     * @param sort
      * @return lawyerList
      */
 
     @GET
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response listLawyers(){
+    public Response listLawyers (
+            @QueryParam("sort") boolean sort
+    ){
         List<Lawyer> lawyerList = DataHandler.getInstance().readAllLawyers();
+        if (sort) {
+            Collections.sort(lawyerList, new Comparator<Lawyer>() {
+                @Override
+                public int compare(Lawyer l1, Lawyer l2) {
+                    return l1.getFirstname().compareTo(l2.getFirstname());
+                }
+            });
+        }
         return Response
                 .status(200)
                 .entity(lawyerList)

@@ -1,0 +1,14 @@
+[
+    {   
+        "legalCaseID": 1,
+        "accuser": "Roberto Danvendo",
+        "defendant": "Stefano De Girogi",
+        "description": "Roberto Danvendo accuses Stefano De Giorgi for commiting fraud in his firm."
+    },
+    {
+        "legalCaseID": 2,
+        "accuser": "Rick Ferwell",
+        "defendant": "Leonardo Di Caprio",
+        "description": "Rick Ferwell accuses Leonardo Di Caprio for ending the marriage of Rick Ferwell because Leonardo Di Caprio slept with Rick Ferwells wife."
+    }
+]
