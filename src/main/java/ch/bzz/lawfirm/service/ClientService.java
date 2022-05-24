@@ -62,8 +62,14 @@ public class ClientService {
             @QueryParam("id") int clientID
     ){
         Client client = DataHandler.getInstance().readClientByID(clientID);
+        int httpStatus;
+        if (client == null){
+            httpStatus=404;
+        } else {
+            httpStatus=200;
+        }
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity(client)
                 .build();
     }

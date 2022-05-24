@@ -62,8 +62,14 @@ public class LawyerService{
             @QueryParam("id") int lawyerID
     ){
         Lawyer lawyer = DataHandler.getInstance().readLawyerByID(lawyerID);
+        int httpStatus;
+        if (lawyer == null){
+            httpStatus=404;
+        } else {
+            httpStatus=200;
+        }
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity(lawyer)
                 .build();
     }

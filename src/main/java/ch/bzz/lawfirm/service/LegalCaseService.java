@@ -50,8 +50,14 @@ public class LegalCaseService {
             @QueryParam("id") int legalCaseID
     ){
         LegalCase legalCase = DataHandler.getInstance().readLegalCaseByID(legalCaseID);
+        int httpStatus;
+        if (legalCase == null){
+            httpStatus=404;
+        } else {
+            httpStatus=200;
+        }
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity(legalCase)
                 .build();
     }
