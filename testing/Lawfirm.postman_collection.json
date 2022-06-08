@@ -28,6 +28,41 @@
 			"response": []
 		},
 		{
+			"name": "0.2 restore files",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/test/restore",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"test",
+						"restore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "1.0 list all lawyers",
 			"event": [
 				{
@@ -40,7 +75,7 @@
 							"",
 							"pm.test(\"validate response\", function (){",
 							"    pm.response.to.be.json;",
-							"    pm.expect(pm.response.text()).to.include(\"firstname\");",
+							"    pm.expect(pm.response.text()).to.include(\"name\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -81,7 +116,7 @@
 							"pm.test(\"validate response\", function (){",
 							"    pm.response.to.be.json;",
 							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson.firstname).to.eql(\"Harvey\");",
+							"    pm.expect(responseJson.name).to.eql(\"Harvey Spectre\");",
 							"    pm.expect(responseJson.experience).to.eql(9);",
 							"});"
 						],
@@ -116,6 +151,82 @@
 			"response": []
 		},
 		{
+			"name": "1.1.1 read lawyer missing id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/read",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"read"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.1.2 read lawyer invalid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/read?id=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"read"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "1.2 read lawyer not found",
 			"event": [
 				{
@@ -123,7 +234,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Status test\", function (){",
-							"    pm.response.to.have.status(404);",
+							"    pm.response.to.have.status(410);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -185,6 +296,1063 @@
 			"response": []
 		},
 		{
+			"name": "1.4 add lawyer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Mike Ross",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "87.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.4.1 add lawyer name too short",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "My",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "87.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.4.2 add lawyer name too long",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Well this name will be too long to be accepted as valid aaaaaaaaaaaaaaaaaaaaaaaa",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "87.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.4.3 add lawyer experience too small",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Mike Ross",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "0.1",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "87.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.4.4 add lawyer experience too big",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Mike Ross",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "70",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "87.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.4.5 add lawyer winrate too small",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Mike Ross",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "0.01",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.4.6 add lawyer winrate too big",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Mike Ross",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "101",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.5 update lawyer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lawyerID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Robert Zane",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "82.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.5.1 update lawyer name too short",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lawyerID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Rob",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "82.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.5.2 update lawyer name too long",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lawyerID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Robert Zane also called Robert Zaine is the vather of Rache Zane also called Rachel Zaine ",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "82.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.5.3 update lawyer experience too small",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lawyerID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Robert Zane",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "0.1",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "82.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.5.4 update lawyer experience too big",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lawyerID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Robert Zane",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "69",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "82.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.5.5 update lawyer winrate too small",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lawyerID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Robert Zane",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "0.01",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.5.6 update lawyer winrate too big",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lawyerID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Robert Zane",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "5000",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.6 update lawyer not found ",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(410);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lawyerID",
+							"value": "500",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Robert Zane",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "15",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "82.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.7 delete lawyer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.7.1 delete lawyer missing id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "1.7.2 delete lawyer invalid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete?id=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "2.0 list all clients ",
 			"event": [
 				{
@@ -197,7 +1365,7 @@
 							"",
 							"pm.test(\"validate response\", function (){",
 							"    pm.response.to.be.json;",
-							"    pm.expect(pm.response.text()).to.include(\"firstname\");",
+							"    pm.expect(pm.response.text()).to.include(\"name\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -238,8 +1406,8 @@
 							"pm.test(\"validate response\", function (){",
 							"    pm.response.to.be.json;",
 							"    const responseJson = pm.response.json();",
-							"    pm.expect(responseJson.firstname).to.eql(\"Stefano\");",
-							"    pm.expect(responseJson.networth).to.eql(69000.50);",
+							"    pm.expect(responseJson.name).to.eql(\"Stefano De Giorgi\");",
+							"    pm.expect(responseJson.telNumber).to.eql(\"0764443322\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -273,6 +1441,82 @@
 			"response": []
 		},
 		{
+			"name": "2.1.1 read client missing id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/read",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"read"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.1.2 read client invalid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/read?id=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"read"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "2.2 read client not found ",
 			"event": [
 				{
@@ -280,7 +1524,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Status test\", function (){",
-							"    pm.response.to.have.status(404);",
+							"    pm.response.to.have.status(410);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -335,6 +1579,938 @@
 						{
 							"key": "sort",
 							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.4 add client",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "1980-06-22",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0788852552",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.4.1 add client name too short",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Mi",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "1980-06-22",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0788852552",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.4.2 add client name too long",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "The name Michael Jordan would be valid but because I write that much the name is too long to be valid",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "1980-06-22",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0788852552",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.4.3 add client telNumber invalid (spaces)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "1980-06-22",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "078 885 25 52",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.4.4 add client telNumber too much digits",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "1980-06-22",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "07888525528",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.4.5 add client telNumber not enough digits",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "1980-06-22",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "07888525",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.5 update client",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Stefano De Giorgi",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "2005-01-11",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0764443369",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.5.1 update client name too short",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Stef",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "2005-00-11",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0764443369",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.5.2 update client name too long",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Stefano De Giorgi is a pretty silly name but it would be valid but the problem is that I write too much",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "2005-00-11",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0764443369",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.5.3 update client telNumber invalid (spaces)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Stefano De Giorgi",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "2005-00-11",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "076 444 33 69",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.5.4 update client telNumber too much digits",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Stefano De Giorgi",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "2005-00-11",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "07644433690",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.5.5 update client telNumber not enough digits",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Stefano De Giorgi",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "2005-00-11",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "076444336",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.6 update client not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientID",
+							"value": "500",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Stefano De Giorgi",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "2005-00-11",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "076 444 33 22",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.7 delete client",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/delete?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.7.1 delete client missing id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.7.2 delete client invalid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/delete?id=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1000"
 						}
 					]
 				}
@@ -430,6 +2606,82 @@
 			"response": []
 		},
 		{
+			"name": "3.1.1 read legal case missing id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"read"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.1.2 read legal case invalid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"read"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "3.2 read legal case not found",
 			"event": [
 				{
@@ -464,6 +2716,740 @@
 						{
 							"key": "id",
 							"value": "500"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.3 sort legal cases by accuser",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/list?sort=true",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"list"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.4 add legal case",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accuser",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Chris Rich",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.4.1 add legal case accuser too short",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accuser",
+							"value": "Jor",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Chris Rich",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.4.2 add legal case accuser too long",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accuser",
+							"value": "Michael Jordannnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Chris Rich",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.4.3 add legal case defendant too short",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accuser",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Chris",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.4.4 add legal case defendant too long",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accuser",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Chris Richhhhhhhhhhhhhh hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.5 update legal case",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "accuser",
+							"value": "Nick Gur",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Nick Forest",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.5.1 update legal case accuser too short",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "accuser",
+							"value": "Gur",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Nick Forest",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.5.2 update legal case accuser too long",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "accuser",
+							"value": "Nick Gurrrrrrrrrrrrrrrrrrrrrrrrrrrrr rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Nick Forest",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.5.4 update legal case defendant too long",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "accuser",
+							"value": "Nick Gur",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Nick Forest ddddddddddddddddddddddddddddddddddd dddeddddddddddddddddddddddddddddddd",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.5.3 update legal case defendant too short",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "accuser",
+							"value": "Nick Gur",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Nic",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.6 update legal case not found",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(410);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "legalCaseID",
+							"value": "500",
+							"type": "text"
+						},
+						{
+							"key": "accuser",
+							"value": "Donald Trump ",
+							"type": "text"
+						},
+						{
+							"key": "defendant ",
+							"value": "Christiano Ronaldo",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.7 delete legal case",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.7.1 delete legal case missing id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.7.2 delete legal case invalid id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete?id=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1000"
 						}
 					]
 				}

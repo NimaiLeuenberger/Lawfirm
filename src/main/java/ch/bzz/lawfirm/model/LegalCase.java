@@ -1,17 +1,29 @@
 package ch.bzz.lawfirm.model;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
+
 public class LegalCase {
-    private int legalCaseID;
+    @FormParam("legalCaseID")
+    @Pattern(regexp = "[1-9][0-9]?[0-9]?")
+    private String legalCaseID;
+
+    @FormParam("accuser")
+    @Size(min = 6, max = 80)
     private String accuser;
+
+    @FormParam("defendant")
+    @Size(min = 6, max = 80)
     private String defendant;
-    private String description;
 
     /**
      * gets legalCaseID.
      *
      * @return value of legalCaseID
      */
-    public int getLegalCaseID() {
+    public String getLegalCaseID() {
         return legalCaseID;
     }
 
@@ -20,7 +32,7 @@ public class LegalCase {
      *
      * @param legalCaseID value of legalCaseID
      */
-    public void setLegalCaseID(int legalCaseID) {
+    public void setLegalCaseID(String legalCaseID) {
         this.legalCaseID = legalCaseID;
     }
 
@@ -58,23 +70,5 @@ public class LegalCase {
      */
     public void setDefendant(String defendant) {
         this.defendant = defendant;
-    }
-
-    /**
-     * gets description.
-     *
-     * @return value of description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * sets description.
-     *
-     * @param description value of description
-     */
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

@@ -1,20 +1,14 @@
 [
     {
         "lawyerID": 2,
-        "firstname": "Robert",
-        "lastname": "Zane",
-        "company": "Kaldor and Zane",
+        "name": "Robert Zane",
         "experience": 12,
-        "type": "corporate lawyer",
         "winrate": 82.3
-    },
+    },        
     {
         "lawyerID": 1,
-        "firstname": "Harvey",
-        "lastname": "Spectre",
-        "company": "Pearson Spectre Litt",
+        "name": "Harvey Spectre",
         "experience": 9,
-        "type": "corporate lawyer",
         "winrate": 99.6
-    }
+    }    
 ]

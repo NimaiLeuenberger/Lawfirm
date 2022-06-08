@@ -1,18 +1,14 @@
 [
     {
         "clientID": 1,
-        "firstname": "Stefano",
-        "lastname": "De Giorgi",
-        "birthdate": "2005-00-11",
-        "telNumber": "0764443322",
-        "networth": 69000.50     
+        "name": "Stefano De Giorgi",
+        "birthdate": "2005-01-11",
+        "telNumber": "0764443322"     
     },
     {
         "clientID": 2,
-        "firstname": "Leonardo",
-        "lastname": "Di Caprio",
+        "name": "Leonardo Di Caprio",
         "birthdate": "2000-05-01",
-        "telNumber": "0796661111",
-        "networth": 580420000.45     
+        "telNumber": "0796661111"    
     }
 ]

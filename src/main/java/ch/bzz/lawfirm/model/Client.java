@@ -1,29 +1,73 @@
 package ch.bzz.lawfirm.model;
 
+import ch.bzz.lawfirm.data.DataHandler;
+import ch.bzz.lawfirm.util.LocalDateDeserializer;
+import ch.bzz.lawfirm.util.LocalDateSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
-import java.util.Date;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * a Client from a Lawyer
  */
 
 public class Client {
-    private int clientID;
-    private String firstname;
-    private String lastname;
-    private Date birthdate;
+    @FormParam("clientID")
+    @Pattern(regexp = "[1-9][0-9]?[0-9]?")
+    private String clientID;
+
+    @FormParam("name")
+    @Size(min = 6, max = 60)
+    private String name;
+
+
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
+    @FormParam("birthdate")
+    private LocalDate birthdate;
+
+    @FormParam("telNumber")
+    @Pattern(regexp = "0(2[1-246-7]|3[1-4]|4[13-4]|5[25-6]|6[1-2]|7[15-68-9]|8[17]|91)[0-9]{7}")
     private String telNumber;
-    private Double networth;
+    // regex for 10 digits, no space
+
     @JsonIgnore
-    private Lawyer lawyer;
+    private LegalCase legalCase;
+
+    /**
+     * gets the legalCaseID from the Legal Case-object
+     * @return the legalCaseID
+     */
+    public String getLegalCaseID() {
+        if (getLegalCase()== null) return null;
+        return getLegalCase().getLegalCaseID();
+    }
+
+    /**
+     * creates a Legal Case-object without the lawyerlist
+     * @param legalCaseID the key
+     */
+    public void setLegalCaseID(String legalCaseID) {
+        setLegalCase(new LegalCase());
+        LegalCase legalCase = DataHandler.readLegalCaseByID(legalCaseID);
+        getLegalCase().setLegalCaseID(legalCaseID);
+        getLegalCase().setAccuser(legalCase.getAccuser());
+        getLegalCase().setDefendant(legalCase.getDefendant());
+    }
 
     /**
      * gets clientID.
      *
      * @return value of clientID
      */
-    public int getClientID() {
+    public String getClientID() {
         return clientID;
     }
 
@@ -32,7 +76,7 @@ public class Client {
      *
      * @param clientID value of clientID
      */
-    public void setClientID(int clientID) {
+    public void setClientID(String clientID) {
         this.clientID = clientID;
     }
 
@@ -41,35 +85,17 @@ public class Client {
      *
      * @return value of firstname
      */
-    public String getFirstname() {
-        return firstname;
+    public String getName() {
+        return name;
     }
 
     /**
      * sets firstname.
      *
-     * @param firstname value of firstname
+     * @param name value of firstname
      */
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    /**
-     * gets lastname.
-     *
-     * @return value of lastname
-     */
-    public String getLastname() {
-        return lastname;
-    }
-
-    /**
-     * sets lastname.
-     *
-     * @param lastname value of lastname
-     */
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -77,7 +103,7 @@ public class Client {
      *
      * @return value of birthdate
      */
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
@@ -86,8 +112,14 @@ public class Client {
      *
      * @param birthdate value of birthdate
      */
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
+    }
+
+    @JsonIgnore
+    public void setBirthdate(String birthdate) {
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        this.birthdate = LocalDate.parse(birthdate);
     }
 
     /**
@@ -109,38 +141,20 @@ public class Client {
     }
 
     /**
-     * gets networth.
+     * gets legalCase.
      *
-     * @return value of networth
+     * @return value of legalCase
      */
-    public Double getNetworth() {
-        return networth;
+    public LegalCase getLegalCase() {
+        return legalCase;
     }
 
     /**
-     * sets networth.
+     * sets legalCase.
      *
-     * @param networth value of networth
+     * @param legalCase value of legalCase
      */
-    public void setNetworth(Double networth) {
-        this.networth = networth;
-    }
-
-    /**
-     * gets lawyer.
-     *
-     * @return value of lawyer
-     */
-    public Lawyer getLawyer() {
-        return lawyer;
-    }
-
-    /**
-     * sets lawyer.
-     *
-     * @param lawyer value of lawyer
-     */
-    public void setLawyer(Lawyer lawyer) {
-        this.lawyer = lawyer;
+    public void setLegalCase(LegalCase legalCase) {
+        this.legalCase = legalCase;
     }
 }

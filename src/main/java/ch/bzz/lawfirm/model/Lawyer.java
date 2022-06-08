@@ -1,35 +1,67 @@
 package ch.bzz.lawfirm.model;
 
-import java.util.List;
+import ch.bzz.lawfirm.data.DataHandler;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.validation.constraints.*;
+import javax.ws.rs.FormParam;
+import java.math.BigDecimal;
 
 /**
  * a Lawyer from a company
  */
 
 public class Lawyer {
-    /*@JsonIgnore
-    private Client[] clients;
+    @FormParam("lawyerID")
+    @Pattern(regexp = "[1-9][0-9]?[0-9]?")
+    private String lawyerID;
+    //TODO: check if the lawyerID already exists!
+
+    @FormParam("name")
+    @Size(min = 6, max = 60)
+    private String name;
+
+    @FormParam("experience")
+    @DecimalMin(value = "0.5")
+    @DecimalMax(value = "64")
+    private BigDecimal experience;
+
+    @FormParam("winrate")
+    @DecimalMin(value = "0.1")
+    @DecimalMax(value = "100")
+    private BigDecimal winrate;
+
     @JsonIgnore
-    private int cntr = 0;
+    private Client client;
 
-    private LegalCase[] legalCase;
-    */
+    /**
+     * gets the clientID from the Client-object
+     * @return the clientID
+     */
+    public String getClientID() {
+        if (getClient()== null) return null;
+        return getClient().getClientID();
+    }
 
-    private int lawyerID;
-    private String firstname;
-    private String lastname;
-    private String company;
-    private int experience;
-    private String type;
-    private Double winrate;
+    /**
+     * creates a Client-object without the lawyerlist
+     * @param clientID the key
+     */
+    public void setClientID(String clientID) {
+        setClient(new Client());
+        Client client = DataHandler.readClientByID(clientID);
+        getClient().setClientID(clientID);
+        getClient().setName(client.getName());
+        getClient().setBirthdate(client.getBirthdate());
+        getClient().setTelNumber(client.getTelNumber());
+    }
 
     /**
      * gets lawyerID.
      *
      * @return value of lawyerID
      */
-    public int getLawyerID() {
+    public String getLawyerID() {
         return lawyerID;
     }
 
@@ -38,7 +70,7 @@ public class Lawyer {
      *
      * @param lawyerID value of lawyerID
      */
-    public void setLawyerID(int lawyerID) {
+    public void setLawyerID(String lawyerID) {
         this.lawyerID = lawyerID;
     }
 
@@ -47,53 +79,17 @@ public class Lawyer {
      *
      * @return value of firstname
      */
-    public String getFirstname() {
-        return firstname;
+    public String getName() {
+        return name;
     }
 
     /**
      * sets firstname.
      *
-     * @param firstname value of firstname
+     * @param name value of firstname
      */
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    /**
-     * gets lastname.
-     *
-     * @return value of lastname
-     */
-    public String getLastname() {
-        return lastname;
-    }
-
-    /**
-     * sets lastname.
-     *
-     * @param lastname value of lastname
-     */
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
-    /**
-     * gets company.
-     *
-     * @return value of company
-     */
-    public String getCompany() {
-        return company;
-    }
-
-    /**
-     * sets company.
-     *
-     * @param company value of company
-     */
-    public void setCompany(String company) {
-        this.company = company;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -101,7 +97,7 @@ public class Lawyer {
      *
      * @return value of experience
      */
-    public int getExperience() {
+    public BigDecimal getExperience() {
         return experience;
     }
 
@@ -110,26 +106,8 @@ public class Lawyer {
      *
      * @param experience value of experience
      */
-    public void setExperience(int experience) {
+    public void setExperience(BigDecimal experience) {
         this.experience = experience;
-    }
-
-    /**
-     * gets type.
-     *
-     * @return value of type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * sets type.
-     *
-     * @param type value of type
-     */
-    public void setType(String type) {
-        this.type = type;
     }
 
     /**
@@ -137,7 +115,7 @@ public class Lawyer {
      *
      * @return value of winrate
      */
-    public Double getWinrate() {
+    public BigDecimal getWinrate() {
         return winrate;
     }
 
@@ -146,26 +124,25 @@ public class Lawyer {
      *
      * @param winrate value of winrate
      */
-    public void setWinrate(Double winrate) {
+    public void setWinrate(BigDecimal winrate) {
         this.winrate = winrate;
     }
 
-    /*   public Client getClient(int index) {
-        return clients[index];
+    /**
+     * gets client.
+     *
+     * @return value of client
+     */
+    public Client getClient() {
+        return client;
     }
 
-    public void addClients(Client client) {
-        this.clients[cntr] = client;
+    /**
+     * sets client.
+     *
+     * @param client value of client
+     */
+    public void setClient(Client client) {
+        this.client = client;
     }
-
-    public LegalCase[] getLegalCase() {
-        return legalCase;
-    }
-
-    public void setLegalCase(LegalCase[] legalCase) {
-        this.legalCase = legalCase;
-    }
-
-    */
-
 }
