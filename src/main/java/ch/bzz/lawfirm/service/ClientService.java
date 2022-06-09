@@ -90,10 +90,12 @@ public class ClientService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertClient(
             @Valid @BeanParam Client client,
-            @FormParam("legalCaseID") String legalCaseID
+            @FormParam("legalCaseID") String legalCaseID,
+            @FormParam("birthdate") String birthdate
     ){
         client.setLegalCaseID(legalCaseID);
         client.setClientID(newClientIDGenerator());
+        client.setBirthdate(birthdate);
 
         DataHandler.insertClient(client);
         return Response

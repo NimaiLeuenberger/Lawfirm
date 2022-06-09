@@ -30,7 +30,6 @@ public class Client {
 
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    @FormParam("birthdate")
     private LocalDate birthdate;
 
     @FormParam("telNumber")
