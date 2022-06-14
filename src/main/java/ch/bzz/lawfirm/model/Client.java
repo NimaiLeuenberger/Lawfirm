@@ -27,10 +27,8 @@ public class Client {
     @Size(min = 6, max = 60)
     private String name;
 
-
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
-    @FormParam("birthdate")
     private LocalDate birthdate;
 
     @FormParam("telNumber")

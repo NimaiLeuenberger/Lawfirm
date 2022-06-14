@@ -15,7 +15,6 @@ public class Lawyer {
     @FormParam("lawyerID")
     @Pattern(regexp = "[1-9][0-9]?[0-9]?")
     private String lawyerID;
-    //TODO: check if the lawyerID already exists!
 
     @FormParam("name")
     @Size(min = 6, max = 60)

@@ -1946,6 +1946,66 @@
 			"response": []
 		},
 		{
+			"name": "2.4.6 add client birthdate invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "1880-09-11",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "07888525",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "2.5 update client",
 			"event": [
 				{
@@ -1978,7 +2038,7 @@
 						},
 						{
 							"key": "birthdate",
-							"value": "2005-01-11",
+							"value": "2005-01-22",
 							"type": "text"
 						},
 						{
@@ -2309,6 +2369,71 @@
 						{
 							"key": "telNumber",
 							"value": "076444336",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.5.6 update client birthdate invalid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Stefano De Giorgi",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "175-00-11",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0764443367",
 							"type": "text"
 						},
 						{

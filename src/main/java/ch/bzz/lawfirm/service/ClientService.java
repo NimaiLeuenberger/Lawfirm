@@ -3,6 +3,7 @@ package ch.bzz.lawfirm.service;
 import ch.bzz.lawfirm.model.Client;
 import ch.bzz.lawfirm.data.DataHandler;
 import ch.bzz.lawfirm.model.Lawyer;
+import ch.bzz.lawfirm.util.Birthdate;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
@@ -90,10 +91,13 @@ public class ClientService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertClient(
             @Valid @BeanParam Client client,
-            @FormParam("legalCaseID") String legalCaseID
+            @FormParam("legalCaseID") String legalCaseID,
+            @FormParam("birthdate") @Birthdate(value = 1900)
+                String birthdate
     ){
         client.setLegalCaseID(legalCaseID);
         client.setClientID(newClientIDGenerator());
+        client.setBirthdate(birthdate);
 
         DataHandler.insertClient(client);
         return Response
@@ -125,13 +129,15 @@ public class ClientService {
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateClient(
             @Valid @BeanParam Client client,
-            @FormParam("legalCaseID") String legalCaseID
+            @FormParam("legalCaseID") String legalCaseID,
+            @FormParam("birthdate") @Birthdate(value = 1900)
+                String birthdate
     ){
         int httpStatus = 200;
         Client oldClient = DataHandler.readClientByID(client.getClientID());
         if (oldClient != null){
             oldClient.setName(client.getName());
-            oldClient.setBirthdate(client.getBirthdate());
+            oldClient.setBirthdate(birthdate);
             oldClient.setTelNumber(client.getTelNumber());
             oldClient.setLegalCaseID(legalCaseID);
 
