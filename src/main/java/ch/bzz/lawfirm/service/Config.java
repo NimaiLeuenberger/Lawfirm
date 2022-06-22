@@ -31,6 +31,7 @@ public class Config extends Application {
         providers.add(LawyerService.class);
         providers.add(ClientService.class);
         providers.add(LegalCaseService.class);
+        providers.add(UserService.class);
         return providers;
     }
 
