@@ -33,19 +33,28 @@ public class LawyerService{
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listLawyers (
+            @CookieParam("userRole") String userRole, // same name as cookie in UserService!
             @QueryParam("sort") boolean sort
     ){
-        List<Lawyer> lawyerList = DataHandler.readAllLawyers();
-        if (sort) {
-            Collections.sort(lawyerList, new Comparator<Lawyer>() {
-                @Override
-                public int compare(Lawyer l1, Lawyer l2) {
-                    return l1.getName().compareTo(l2.getName());
-                }
-            });
+        int httpStatus;
+        List<Lawyer> lawyerList = null;
+
+        if (userRole == null || userRole.equals("guest")){
+            httpStatus = 401;
+        } else {
+            httpStatus = 200;
+            lawyerList = DataHandler.readAllLawyers();
+            if (sort) {
+                Collections.sort(lawyerList, new Comparator<Lawyer>() {
+                    @Override
+                    public int compare(Lawyer l1, Lawyer l2) {
+                        return l1.getName().compareTo(l2.getName());
+                    }
+                });
+            }
         }
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity(lawyerList)
                 .build();
     }
@@ -61,14 +70,23 @@ public class LawyerService{
     @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
     public Response readLawyer(
+            @CookieParam("userRole") String userRole,
             @NotEmpty
             @Pattern(regexp = "[1-9][0-9]?[0-9]?")
             @QueryParam("id") String lawyerID
     ){
-        int httpStatus = 200;
-        Lawyer lawyer = DataHandler.readLawyerByID(lawyerID);
-        if (lawyer == null){
-            httpStatus = 410;
+        int httpStatus;
+        Lawyer lawyer = null;
+
+        if (userRole == null || userRole.equals("guest")){
+            httpStatus = 401;
+        } else {
+            lawyer = DataHandler.readLawyerByID(lawyerID);
+            if (lawyer == null){
+                httpStatus = 410;
+            } else {
+                httpStatus = 200;
+            }
         }
         return Response
                 .status(httpStatus)
@@ -87,15 +105,24 @@ public class LawyerService{
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertLawyer(
+            @CookieParam("userRole") String userRole,
             @Valid @BeanParam Lawyer lawyer,
             @FormParam("clientID") String clientID
     ){
-        lawyer.setClientID(clientID);
-        lawyer.setLawyerID(newLawyerIDGenerator());
+        int httpStatus;
 
-        DataHandler.insertLawyer(lawyer);
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")){
+            httpStatus = 401;
+        } else {
+            httpStatus = 200;
+
+            lawyer.setClientID(clientID);
+            lawyer.setLawyerID(newLawyerIDGenerator());
+
+            DataHandler.insertLawyer(lawyer);
+        }
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity("")
                 .build();
     }
@@ -122,20 +149,27 @@ public class LawyerService{
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateLawyer(
+            @CookieParam("userRole") String userRole,
             @Valid @BeanParam Lawyer lawyer,
             @FormParam("clientID") String clientID
     ){
-        int httpStatus = 200;
-        Lawyer oldlawyer = DataHandler.readLawyerByID(lawyer.getLawyerID());
-        if (oldlawyer != null){
-            oldlawyer.setName(lawyer.getName());
-            oldlawyer.setExperience(lawyer.getExperience());
-            oldlawyer.setWinrate(lawyer.getWinrate());
-            oldlawyer.setClientID(clientID);
-
-            DataHandler.updateLawyer();
+        int httpStatus;
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")){
+            httpStatus = 401;
         } else {
-            httpStatus = 410;
+            httpStatus = 200;
+
+            Lawyer oldlawyer = DataHandler.readLawyerByID(lawyer.getLawyerID());
+            if (oldlawyer != null){
+                oldlawyer.setName(lawyer.getName());
+                oldlawyer.setExperience(lawyer.getExperience());
+                oldlawyer.setWinrate(lawyer.getWinrate());
+                oldlawyer.setClientID(clientID);
+
+                DataHandler.updateLawyer();
+            } else {
+                httpStatus = 410;
+            }
         }
         return Response
                 .status(httpStatus)
@@ -153,13 +187,20 @@ public class LawyerService{
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteLawyer(
+            @CookieParam("userRole") String userRole,
             @NotEmpty
             @Pattern(regexp = "[1-9][0-9]?[0-9]?")
             @QueryParam("id") String lawyerID
     ){
-        int httpStatus = 200;
-        if (!DataHandler.deleteLawyer(lawyerID)){
-            httpStatus = 410;
+        int httpStatus;
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")){
+            httpStatus = 401;
+        } else {
+            httpStatus = 200;
+
+            if (!DataHandler.deleteLawyer(lawyerID)){
+                httpStatus = 410;
+            }
         }
         return Response
                 .status(httpStatus)
