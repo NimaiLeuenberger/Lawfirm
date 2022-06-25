@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="author" content="Nimai Leuenberger"/>
-    <title>Anmeldung</title>
+    <title>Liste der Anwälte</title>
     <link rel="stylesheet" href="./css/lawfirm.css">
     <script src="./js/util.js"></script>
-    <script src="./js/login.js"></script>
+    <script src="./js/lawyerlist.js"></script>
 </head>
 <body>
 <nav id="nav">
@@ -16,23 +16,27 @@
     <span id="logOnOff"><a href="./index.html">Abmelden</a></a></span>
     <span id="message" style="color: red;"></span>
 </nav>
-<h3>Anmeldung</h3>
-<form id="loginForm">
-    <table>
-        <tr>
-            <td><label for="username">Benutzername</label></td>
-            <td><input id="username" name="username" type="text"/>
+<h3>Liste der Anwälte</h3>
+<form id="shelfForm">
+    <table id="lawyerlist">
+        <thead>
+        <tr id="headings">
+            <th></th>
         </tr>
-        <tr>
-            <td><label for="password">Password</label></td>
-            <td><input id="password" name="password" type="password"/>
+        <tr id="search">
+            <th>&#128269;</th>
+            <th><input id="nameFilter" type=text"/></th>
+            <th><input id="experienceFilter" type=text"/></th>
+            <th><input id="winrateFilter" type=text"/></th>
+            <th><input id="clientFilter" type=text"/></th>
         </tr>
-        <tr>
-            <td>
-                <button id="login" type="submit">Anmelden</button>
-            </td>
-        </tr>
+        </thead>
+        <tbody id="lawyers">
+
+        </tbody>
     </table>
+    <p id="addButton">
+    </p>
 </form>
 </body>
 </html>

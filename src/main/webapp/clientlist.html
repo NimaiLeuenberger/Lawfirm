@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Nimai Leuenberger"/>
+    <title>Liste der Klienten</title>
+    <link rel="stylesheet" href="./css/lawfirm.css">
+    <script src="./js/util.js"></script>
+    <script src="./js/clientlist.js"></script>
+</head>
+<body>
+<nav id="nav">
+    <<span><a href="./lawyerlist.html">Anwälte</a></span>
+    <span><a href="./clientlist.html">Klienten</a></span>
+    <span><a href="./legalcaselist.html">Rechtsfälle</a></span>
+    <span id="logOnOff"><a href="./index.html">Abmelden</a></a></span>
+    <span id="message" style="color: red;"></span>
+</nav>
+<h3>Liste der Klienten</h3>
+<form id="clientForm">
+    <table id="clientlist">
+        <thead id="search">
+        <tr id="headings">
+            <th></th>
+        </tr>
+        <tr>
+            <th>&#128269;</th>
+            <th><input id="clientName" type=text"/></th>
+            <th><input id="clientBirthdate" type=text"/></th>
+            <th><input id="clientTelNumber" type=text"/></th>
+            <th><input id="legalCase" type=text"/></th>
+        </tr>
+        </thead>
+        <tbody id="clients">
+
+        </tbody>
+    </table>
+    <p id="addButton">
+    </p>
+</form>
+</body>
+</html>
