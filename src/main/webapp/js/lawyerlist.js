@@ -106,7 +106,7 @@ function showLawyerlist(data) {
     });
 
     if (userRole === "user" || userRole === "admin") {
-        document.getElementById("addButton").innerHTML = "<a href='../lawyeredit.html'>Neues Buch</a>";
+        document.getElementById("addButton").innerHTML = "<a href='./lawyeredit.html'>Neuer Anwalt</a>";
     }
 }
 
