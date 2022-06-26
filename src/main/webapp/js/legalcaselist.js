@@ -152,7 +152,7 @@ function showHeadings() {
     row.insertCell(-1);
     for (let i=0; i<labels.length; i++) {
         let cell = row.insertCell(-1);
-        cell.innerHTML = labels[i] + "&darr;&nbsp;";
+        cell.innerHTML = labels[i] + "&darr;";
         cell.id=ids[i];
     }
 }

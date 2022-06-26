@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showHeadings();
     readLawyers();
 
-    document.getElementById("search").addEventListener("keyup", searchLawyers);
+    //document.getElementById("search").addEventListener("keyup", searchLawyers);
 });
 
 /**
@@ -37,9 +37,9 @@ function readLawyers() {
 }
 
 /**
+*
  * look up the search-fields and create the filter
  * @param event
- */
 function searchLawyers(event) {
     const searchFields = ["nameFilter", "experienceFilter", "winrateFilter", "clientFilter"]
     const element = event.target;
@@ -64,6 +64,7 @@ function searchLawyers(event) {
         readLawyers();
     }, 500);
 }
+ */
 
 /**
  * shows the booklist as a table
@@ -154,7 +155,7 @@ function showHeadings() {
     row.insertCell(-1);
     for (let i=0; i<labels.length; i++) {
         let cell = row.insertCell(-1);
-        cell.innerHTML = labels[i] + "&darr;&nbsp;";
+        cell.innerHTML = labels[i] + "&darr;";
         cell.id=ids[i];
     }
 }
