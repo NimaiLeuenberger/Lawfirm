@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function readLegalCases(field, filter, sort) {
     let url = "./resource/legalCase/list";
+
     fetch(url, {
         headers: { "Authorization": "Bearer "}
     })
@@ -41,7 +42,7 @@ function readLegalCases(field, filter, sort) {
 /**
  * look up the search-fields and create the filter
  * @param event
- */
+ *//*
 function searchLegalCases(event) {
     const searchFields = ["legalCaseAccuser", "legalCaseDefendant"];
     const element = event.target;
@@ -64,7 +65,7 @@ function searchLegalCases(event) {
     delayTimer = setTimeout(() => {
         readLegalCases(field, filter);
     }, 500);
-}
+}*/
 /**
  * shows the authors as a table
  * @param data  the authors
@@ -77,16 +78,21 @@ function showLegalCaseList(data) {
     data.forEach(legalCase => {
         let row = tBody.insertRow(-1);
         let button = document.createElement("button");
-        if (userRole === "user" || userRole === "admin")
+        if (userRole === "admin"){
             button.innerHTML = "&#9998;";
-        else
-            button.innerHTML = "&#128065;";
-
-        button.type = "button";
-        button.name = "editLegalCase";
-        button.setAttribute("data-legalCaseID", legalCase.legalCaseID);
-        button.addEventListener("click", editLegalCase);
-        row.insertCell(-1).appendChild(button);
+            button.type = "button";
+            button.name = "editLegalCase";
+            button.setAttribute("data-legalcaseid", legalCase.legalCaseID);
+            button.addEventListener("click", editLegalCase);
+            row.insertCell(-1).appendChild(button);
+        } else if (userRole === "user"){
+            button.innerHTML = "&#128065";
+            button.type = "button";
+            button.name = "readLegalCase";
+            button.setAttribute("data-legalcaseid", legalCase.legalCaseID);
+            button.addEventListener("click", editLegalCase);
+            row.insertCell(-1).appendChild(button);
+        }
 
         row.insertCell(-1).innerHTML = legalCase.accuser;
         row.insertCell(-1).innerHTML = legalCase.defendant;

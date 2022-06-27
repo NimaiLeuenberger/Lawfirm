@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showHeadings();
     readClients("","");
 
-    document.getElementById("search").addEventListener("keyup", searchClients);
+    //document.getElementById("search").addEventListener("keyup", searchClients);
 });
 
 /**
@@ -16,10 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function readClients() {
     let url = "./resource/client/list";
-    /*if (field !== "" && filter !== "") {
-        url += "?field=" + field;
-        url += "&filter=" + filter;
-    }*/
+
     fetch(url, {
         headers: { "Authorization": "Bearer "}
     })
@@ -42,7 +39,7 @@ function readClients() {
 /**
  * look up the search-fields and create the filter
  * @param event
- */
+ *//*
 function searchClients(event) {
     const searchFields = ["clientName", "clientBirthdate", "clientTelNumber", "legalCase"]
     const element = event.target;
@@ -65,7 +62,7 @@ function searchClients(event) {
     delayTimer = setTimeout(() => {
         readClients();
     }, 500);
-}
+}*/
 /**
  * shows the publishers as a table
  * @param data  the publishers
@@ -79,16 +76,21 @@ function showClientList(data) {
         let row = tBody.insertRow(-1);
 
         let button = document.createElement("button");
-        if (userRole === "user" || userRole === "admin")
+        if (userRole === "admin"){
             button.innerHTML = "&#9998;";
-        else
-            button.innerHTML = "&#128065;";
-
-        button.type = "button";
-        button.name = "editClient";
-        button.setAttribute("data-clientid", client.clientID);
-        button.addEventListener("click", editClient);
-        row.insertCell(-1).appendChild(button);
+            button.type = "button";
+            button.name = "editClient";
+            button.setAttribute("data-clientid", client.clientID);
+            button.addEventListener("click", editClient);
+            row.insertCell(-1).appendChild(button);
+        } else if (userRole === "user"){
+            button.innerHTML = "&#128065";
+            button.type = "button";
+            button.name = "readClient";
+            button.setAttribute("data-clientid", client.clientID);
+            button.addEventListener("click", editClient);
+            row.insertCell(-1).appendChild(button);
+        }
 
         row.insertCell(-1).innerHTML = client.name;
         row.insertCell(-1).innerHTML = client.birthdate;
@@ -108,7 +110,7 @@ function showClientList(data) {
 
     });
 
-    if (userRole === "user" || userRole === "admin") {
+    if (userRole === "admin") {
         document.getElementById("addButton").innerHTML = "<a href='./clientedit.html'>Neuer Klient</a>";
     }
 }

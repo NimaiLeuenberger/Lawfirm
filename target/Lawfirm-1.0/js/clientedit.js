@@ -3,6 +3,12 @@
  * @author Nimai Leuenberger
  */
 document.addEventListener("DOMContentLoaded", () => {
+    const userRole = getCookie("userRole");
+    if (userRole === "user"){
+        document.getElementById("save").style.visibility="hidden";
+        document.getElementById("reset").style.visibility="hidden";
+    }
+
     readLegalCases();
     readClient();
 
@@ -99,7 +105,6 @@ function showClient(data) {
  * reads all publishers as an array
  */
 function readLegalCases() {
-
     fetch("./resource/legalCase/list", {
         headers: { "Authorization": "Bearer "}
     })

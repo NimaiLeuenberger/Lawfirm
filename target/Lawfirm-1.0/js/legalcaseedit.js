@@ -3,6 +3,11 @@
  * @author Nimai Leuenberger
  */
 document.addEventListener("DOMContentLoaded", () => {
+    const userRole = getCookie("userRole");
+    if (userRole === "user"){
+        document.getElementById("save").style.visibility="hidden";
+        document.getElementById("reset").style.visibility="hidden";
+    }
     readLegalCase();
 
     document.getElementById("legalcaseeditForm").addEventListener("submit", saveLegalCase);
@@ -58,6 +63,7 @@ function saveLegalCase(event) {
  */
 function readLegalCase() {
     const legalCaseID = getQueryParam("id");
+
     fetch("./resource/legalCase/read?id=" + legalCaseID, {
         headers: { "Authorization": "Bearer "}
     })

@@ -3,6 +3,11 @@
  * @author Nimai Leuenberger
  */
 document.addEventListener("DOMContentLoaded", () => {
+    const userRole = getCookie("userRole");
+    if (userRole === "user"){
+        document.getElementById("save").style.visibility="hidden";
+        document.getElementById("reset").style.visibility="hidden";
+    }
     readClients();
     readLawyer();
 
@@ -99,7 +104,6 @@ function showLawyer(data) {
  * reads all publishers as an array
  */
 function readClients() {
-
     fetch("./resource/client/list", {
         headers: { "Authorization": "Bearer "}
     })
@@ -130,12 +134,6 @@ function showClients(data) {
         option.text = client.name;
         option.value = client.clientID;
         dropdown.add(option);
-    })
-}
-
-function selectedClients(clientList) {
-    clientList.forEach(client => {
-        document.getElementById(client.clientID).selected = true;
     })
 }
 
