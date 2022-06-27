@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Nimai Leuenberger"/>
+    <title>Rechtsfall bearbeiten</title>
+    <link rel="stylesheet" href="./css/lawfirm.css">
+    <script src="./js/util.js"></script>
+    <script src="./js/legalcaseedit.js"></script>
+</head>
+<body>
+<nav id="nav">
+    <<span><a href="./lawyerlist.html">Anwälte</a></span>
+    <span><a href="./clientlist.html">Klienten</a></span>
+    <span><a href="./legalcaselist.html">Rechtsfälle</a></span>
+    <span id="logOnOff"><a href="./index.html">Abmelden</a></a></span>
+    <span id="message" style="color: red;"></span>
+</nav>
+<h3>Rechtsfall bearbeiten</h3>
+<form id="legalcaseeditForm" name="legalcaseedit">
+    <table>
+        <tr>
+            <td><label for="accuser">Kläger</label></td>
+            <td>
+                <input id="legalCaseID" name="legalCaseID" type="hidden"/>
+                <input id="accuser" name="accuser" type="text" size="30" minlength="2" maxlength="30" required/>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="defendant">Angeklagter</label></td>
+            <td><input id="defendant" name="defendant" type="text" size="30" minlength="2" maxlength="30" required/></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <button id="save" type="submit">Speichern</button>
+            </td>
+            <td>
+                <button id="reset" type="reset">Zurücksetzen</button>
+            </td>
+            <td>
+                <button id="cancel" type="button">Abbruch</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

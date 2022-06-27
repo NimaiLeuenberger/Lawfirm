@@ -63,6 +63,56 @@
 			"response": []
 		},
 		{
+			"name": "0.3 login admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "nimai",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "1.0 list all lawyers",
 			"event": [
 				{
@@ -738,7 +788,7 @@
 					"urlencoded": [
 						{
 							"key": "lawyerID",
-							"value": "2",
+							"value": "3",
 							"type": "text"
 						},
 						{
@@ -2814,7 +2864,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Status test\", function (){",
-							"    pm.response.to.have.status(404);",
+							"    pm.response.to.have.status(410);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -3575,6 +3625,1593 @@
 						{
 							"key": "id",
 							"value": "1000"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.1 login user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "theRock",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.1.1 list all lawyers",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"validate response\", function (){",
+							"    pm.response.to.be.json;",
+							"    pm.expect(pm.response.text()).to.include(\"name\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.1.2 read lawyer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"validate response\", function (){",
+							"    pm.response.to.be.json;",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.name).to.eql(\"Robert Zane\");",
+							"    pm.expect(responseJson.experience).to.eql(20);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/read?id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"read"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.1.3 add lawyer unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Mike Ross",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "87.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.1.4 update lawyer unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lawyerID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Robert Zane",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "82.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.1.5 delete lawyer unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.2.1 list all clients",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"validate response\", function (){",
+							"    pm.response.to.be.json;",
+							"    pm.expect(pm.response.text()).to.include(\"name\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.2.2 read client",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"validate response\", function (){",
+							"    pm.response.to.be.json;",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.name).to.eql(\"Leonardo Di Caprio\");",
+							"    pm.expect(responseJson.telNumber).to.eql(\"0796661111\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/read?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"read"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.2.3 add client unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "1980-06-22",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0788852552",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.2.4 update client unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Stefano De Giorgi",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "2005-01-22",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0764443369",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.2.5 delete client unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/delete?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.3.1 list all legal cases",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"validate response\", function (){",
+							"    pm.response.to.be.json;",
+							"    pm.expect(pm.response.text()).to.include(\"accuser\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.3.2 read legal case",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"validate response\", function (){",
+							"    pm.response.to.be.json;",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.accuser).to.eql(\"Nick Gur\");",
+							"    pm.expect(responseJson.defendant).to.eql(\"Nick Forest\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"read"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.3.3 add legal case unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accuser",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Chris Rich",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.3.4 update legal case unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "accuser",
+							"value": "Nick Gur",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Nick Forest",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.3.5 delete legal case unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.4 login failed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "nimaiiiiii",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.5 logout --> login as guest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/user/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.5.1 list all lawyers unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.5.2 read lawyer unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/read?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"read"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.5.3 add lawyer unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Mike Ross",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "87.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.5.4 update lawyer unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "lawyerID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Robert Zane",
+							"type": "text"
+						},
+						{
+							"key": "experience",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "winrate",
+							"value": "82.3",
+							"type": "text"
+						},
+						{
+							"key": "clientID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.5.5 delete lawyer unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"lawyer",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.6.1 list all clients unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.6.2 read client unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/read?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"read"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.6.3 add client unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "1980-06-22",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0788852552",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.6.4 update client unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "clientID",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Stefano De Giorgi",
+							"type": "text"
+						},
+						{
+							"key": "birthdate",
+							"value": "2005-01-22",
+							"type": "text"
+						},
+						{
+							"key": "telNumber",
+							"value": "0764443369",
+							"type": "text"
+						},
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.6.5 delete client unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/client/delete?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"client",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.7.1 list all legal cases unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.7.2 read legal case unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"read"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.7.3 add legal case unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "accuser",
+							"value": "Michael Jordan",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Chris Rich",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.7.4 update legal case unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "legalCaseID",
+							"value": "2",
+							"type": "text"
+						},
+						{
+							"key": "accuser",
+							"value": "Nick Gur",
+							"type": "text"
+						},
+						{
+							"key": "defendant",
+							"value": "Nick Forest",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.7.5 delete legal case unauthorized",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status test\", function (){",
+							"    pm.response.to.have.status(401);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Lawfirm-1.0",
+						"resource",
+						"legalCase",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
 						}
 					]
 				}

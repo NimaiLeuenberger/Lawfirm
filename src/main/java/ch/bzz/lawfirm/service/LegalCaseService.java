@@ -33,19 +33,29 @@ public class LegalCaseService {
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listLegalCases(
+            @CookieParam("userRole") String userRole,
             @QueryParam("sort") boolean sort
     ){
-        List<LegalCase> legalCaseList = DataHandler.readAllLegalCases();
-        if (sort) {
-            Collections.sort(legalCaseList, new Comparator<LegalCase>() {
-                @Override
-                public int compare(LegalCase lc1, LegalCase lc2) {
-                    return lc1.getAccuser().compareTo(lc2.getAccuser());
-                }
-            });
+        int httpStatus;
+        List<LegalCase> legalCaseList = null;
+
+        if (userRole == null || userRole.equals("guest")){
+            httpStatus = 401;
+        } else {
+            httpStatus = 200;
+            legalCaseList = DataHandler.readAllLegalCases();
+
+            if (sort) {
+                Collections.sort(legalCaseList, new Comparator<LegalCase>() {
+                    @Override
+                    public int compare(LegalCase lc1, LegalCase lc2) {
+                        return lc1.getAccuser().compareTo(lc2.getAccuser());
+                    }
+                });
+            }
         }
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity(legalCaseList)
                 .build();
     }
@@ -61,16 +71,24 @@ public class LegalCaseService {
     @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
     public Response readLegalCase(
+            @CookieParam("userRole") String userRole,
             @NotEmpty
             @Pattern(regexp = "[1-9][0-9]?[0-9]?")
             @QueryParam("id") String legalCaseID
     ){
-        LegalCase legalCase = DataHandler.readLegalCaseByID(legalCaseID);
         int httpStatus;
-        if (legalCase == null){
-            httpStatus=404;
+        LegalCase legalCase = null;
+
+        if (userRole == null || userRole.equals("guest")){
+            httpStatus = 401;
         } else {
-            httpStatus=200;
+            legalCase = DataHandler.readLegalCaseByID(legalCaseID);
+
+            if (legalCase == null){
+                httpStatus = 410;
+            } else {
+                httpStatus = 200;
+            }
         }
         return Response
                 .status(httpStatus)
@@ -88,13 +106,21 @@ public class LegalCaseService {
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertLegalCase(
+            @CookieParam("userRole") String userRole,
             @Valid @BeanParam LegalCase legalCase
     ){
-        legalCase.setLegalCaseID(newLegalCaseIDGenerator());
+        int httpStatus;
 
-        DataHandler.insertLegalCase(legalCase);
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")){
+            httpStatus = 401;
+        } else {
+            httpStatus = 200;
+            legalCase.setLegalCaseID(newLegalCaseIDGenerator());
+            DataHandler.insertLegalCase(legalCase);
+        }
+
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity("")
                 .build();
     }
@@ -120,17 +146,24 @@ public class LegalCaseService {
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateLegalCase(
+            @CookieParam("userRole") String userRole,
             @Valid @BeanParam LegalCase legalCase
     ){
-        int httpStatus = 200;
-        LegalCase oldLegalCase = DataHandler.readLegalCaseByID(legalCase.getLegalCaseID());
-        if (oldLegalCase != null){
-            oldLegalCase.setAccuser(legalCase.getAccuser());
-            oldLegalCase.setDefendant(legalCase.getDefendant());
-
-            DataHandler.updateLegalCase();
+        int httpStatus;
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")){
+            httpStatus = 401;
         } else {
-            httpStatus = 410;
+            httpStatus = 200;
+
+            LegalCase oldLegalCase = DataHandler.readLegalCaseByID(legalCase.getLegalCaseID());
+            if (oldLegalCase != null){
+                oldLegalCase.setAccuser(legalCase.getAccuser());
+                oldLegalCase.setDefendant(legalCase.getDefendant());
+
+                DataHandler.updateLegalCase();
+            } else {
+                httpStatus = 410;
+            }
         }
         return Response
                 .status(httpStatus)
@@ -148,13 +181,21 @@ public class LegalCaseService {
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteLegalCase(
+            @CookieParam("userRole") String userRole,
             @NotEmpty
             @Pattern(regexp = "[1-9][0-9]?[0-9]?")
             @QueryParam("id") String legalCaseID
     ){
-        int httpStatus = 200;
-        if (!DataHandler.deleteLegalCase(legalCaseID)){
-            httpStatus = 410;
+        int httpStatus;
+
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")){
+            httpStatus = 401;
+        } else {
+            httpStatus = 200;
+
+            if (!DataHandler.deleteLegalCase(legalCaseID)){
+                httpStatus = 410;
+            }
         }
         return Response
                 .status(httpStatus)

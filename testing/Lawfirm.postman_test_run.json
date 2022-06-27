@@ -1,18 +1,18 @@
 {
-	"id": "2bdb4704-e1f3-46af-bdeb-7928bac98c83",
+	"id": "56eec76e-ec18-4f48-80dc-cb9b0ac69ec3",
 	"name": "Lawfirm",
-	"timestamp": "2022-06-14T17:32:23.327Z",
+	"timestamp": "2022-06-27T16:02:32.662Z",
 	"collection_id": "de34104e-27be-4397-a496-0518e81f2bbc",
 	"folder_id": 0,
 	"environment_id": "0",
-	"totalPass": 72,
+	"totalPass": 112,
 	"totalFail": 0,
 	"results": [
 		{
 			"id": "95eeba98-3be7-4b71-90a5-b1abce578603",
 			"name": "0.1 Testservice",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/test/test",
-			"time": 337,
+			"time": 11,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -20,7 +20,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				337
+				11
 			],
 			"allTests": [
 				{}
@@ -30,7 +30,7 @@
 			"id": "6fda5b7c-8629-4158-8006-17910b349a32",
 			"name": "0.2 restore files",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/test/restore",
-			"time": 418,
+			"time": 11,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -45,7 +45,34 @@
 				}
 			},
 			"times": [
-				418
+				11
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "8566877a-cc39-49a2-bbae-ff88d1156892",
+			"name": "0.3 login admin",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/user/login",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
 			],
 			"allTests": [
 				{
@@ -57,7 +84,7 @@
 			"id": "a8d75504-9e6a-4963-8865-2b6c4d800388",
 			"name": "1.0 list all lawyers",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/list",
-			"time": 928,
+			"time": 15,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -77,7 +104,7 @@
 				}
 			},
 			"times": [
-				928
+				15
 			],
 			"allTests": [
 				{
@@ -90,7 +117,7 @@
 			"id": "48150873-ccf0-4e11-9503-9aedb780c863",
 			"name": "1.1 read lawyer",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/read?id=1",
-			"time": 31,
+			"time": 5,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -110,7 +137,7 @@
 				}
 			},
 			"times": [
-				31
+				5
 			],
 			"allTests": [
 				{
@@ -123,7 +150,7 @@
 			"id": "4e302e5b-307f-4c96-8620-7b12557f7ffc",
 			"name": "1.1.1 read lawyer missing id",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/read",
-			"time": 42,
+			"time": 5,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -138,7 +165,7 @@
 				}
 			},
 			"times": [
-				42
+				5
 			],
 			"allTests": [
 				{
@@ -150,7 +177,7 @@
 			"id": "e7b848f9-09c9-4558-9d3c-f5f1f6d4e320",
 			"name": "1.1.2 read lawyer invalid id",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/read?id=1000",
-			"time": 44,
+			"time": 11,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -165,7 +192,7 @@
 				}
 			},
 			"times": [
-				44
+				11
 			],
 			"allTests": [
 				{
@@ -177,7 +204,7 @@
 			"id": "0293d967-2fbc-408b-9950-579dd9d911c0",
 			"name": "1.2 read lawyer not found",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/read?id=500",
-			"time": 4,
+			"time": 15,
 			"responseCode": {
 				"code": 410,
 				"name": "Gone"
@@ -192,7 +219,7 @@
 				}
 			},
 			"times": [
-				4
+				15
 			],
 			"allTests": [
 				{
@@ -204,7 +231,7 @@
 			"id": "c06a612c-ee21-4b05-b227-ab2d5cb80656",
 			"name": "1.3 sort lawyers by firstname",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/list?sort=true",
-			"time": 153,
+			"time": 6,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -212,7 +239,7 @@
 			"tests": {},
 			"testPassFailCounts": {},
 			"times": [
-				153
+				6
 			],
 			"allTests": [
 				{}
@@ -222,7 +249,7 @@
 			"id": "bfed9b17-494d-485f-b314-2fd2b8d75316",
 			"name": "1.4 add lawyer",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
-			"time": 988,
+			"time": 13,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -237,7 +264,7 @@
 				}
 			},
 			"times": [
-				988
+				13
 			],
 			"allTests": [
 				{
@@ -248,33 +275,6 @@
 		{
 			"id": "d2ddfccd-bca1-4d4d-94d8-a87e7ef3ba72",
 			"name": "1.4.1 add lawyer name too short",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
-			"time": 8,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				8
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "a2ae75ef-fe37-4ca7-9a1f-0bfaf1dc92b8",
-			"name": "1.4.2 add lawyer name too long",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
 			"time": 6,
 			"responseCode": {
@@ -300,62 +300,8 @@
 			]
 		},
 		{
-			"id": "226c7cc5-c15c-48e8-9dba-3620a0811de2",
-			"name": "1.4.3 add lawyer experience too small",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
-			"time": 59,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				59
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "8ef2aac9-42ae-4ac6-ae89-6e4d120c2413",
-			"name": "1.4.4 add lawyer experience too big",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
-			"time": 143,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				143
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "57ea1587-1441-4480-b150-74c526e78e19",
-			"name": "1.4.5 add lawyer winrate too small",
+			"id": "a2ae75ef-fe37-4ca7-9a1f-0bfaf1dc92b8",
+			"name": "1.4.2 add lawyer name too long",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
 			"time": 7,
 			"responseCode": {
@@ -373,6 +319,87 @@
 			},
 			"times": [
 				7
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "226c7cc5-c15c-48e8-9dba-3620a0811de2",
+			"name": "1.4.3 add lawyer experience too small",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "8ef2aac9-42ae-4ac6-ae89-6e4d120c2413",
+			"name": "1.4.4 add lawyer experience too big",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "57ea1587-1441-4480-b150-74c526e78e19",
+			"name": "1.4.5 add lawyer winrate too small",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+			"time": 17,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
 			],
 			"allTests": [
 				{
@@ -411,7 +438,7 @@
 			"id": "db5df59c-096a-4c0b-a058-0941df7b684a",
 			"name": "1.5 update lawyer",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
-			"time": 18,
+			"time": 29,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -426,7 +453,7 @@
 				}
 			},
 			"times": [
-				18
+				29
 			],
 			"allTests": [
 				{
@@ -465,195 +492,6 @@
 			"id": "130b2099-78e2-4fa8-a3ed-f317ea07f1cf",
 			"name": "1.5.2 update lawyer name too long",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
-			"time": 39,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				39
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "9ab2621f-a898-4567-aca1-e051eb7beabb",
-			"name": "1.5.3 update lawyer experience too small",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
-			"time": 12,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				12
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "29a490bb-7900-4a86-b4b5-b712c69bc49a",
-			"name": "1.5.4 update lawyer experience too big",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
-			"time": 7,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				7
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "7176b04a-1bf0-4fbf-bb91-2e419d97ea18",
-			"name": "1.5.5 update lawyer winrate too small",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
-			"time": 12,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				12
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "627f9ed0-61a2-4d95-bd66-3f909ed03799",
-			"name": "1.5.6 update lawyer winrate too big",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
-			"time": 13,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				13
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "9fcbdf7d-b88b-4ed0-91b0-3b2be7ad3fe7",
-			"name": "1.6 update lawyer not found ",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
-			"time": 7,
-			"responseCode": {
-				"code": 410,
-				"name": "Gone"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				7
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "dc3e7f30-8dd4-44d2-8f00-9f80253b9b08",
-			"name": "1.7 delete lawyer",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete?id=1",
-			"time": 12,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				12
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "c7888bfe-769e-483e-95a7-a4c03d9387c3",
-			"name": "1.7.1 delete lawyer missing id",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete",
 			"time": 8,
 			"responseCode": {
 				"code": 400,
@@ -678,10 +516,10 @@
 			]
 		},
 		{
-			"id": "aac74233-7fdb-4d83-a179-c8b1a6ad14b9",
-			"name": "1.7.2 delete lawyer invalid id",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete?id=1000",
-			"time": 5,
+			"id": "9ab2621f-a898-4567-aca1-e051eb7beabb",
+			"name": "1.5.3 update lawyer experience too small",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+			"time": 6,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -696,7 +534,7 @@
 				}
 			},
 			"times": [
-				5
+				6
 			],
 			"allTests": [
 				{
@@ -705,57 +543,100 @@
 			]
 		},
 		{
-			"id": "3a7e466d-3b5b-4e94-9b27-27a35204ebf2",
-			"name": "2.0 list all clients ",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/list",
-			"time": 70,
+			"id": "29a490bb-7900-4a86-b4b5-b712c69bc49a",
+			"name": "1.5.4 update lawyer experience too big",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+			"time": 8,
 			"responseCode": {
-				"code": 200,
-				"name": "OK"
+				"code": 400,
+				"name": "Bad Request"
 			},
 			"tests": {
-				"Status test": true,
-				"validate response": true
+				"Status test": true
 			},
 			"testPassFailCounts": {
 				"Status test": {
-					"pass": 1,
-					"fail": 0
-				},
-				"validate response": {
 					"pass": 1,
 					"fail": 0
 				}
 			},
 			"times": [
-				70
+				8
 			],
 			"allTests": [
 				{
-					"Status test": true,
-					"validate response": true
+					"Status test": true
 				}
 			]
 		},
 		{
-			"id": "f3a90ce6-024d-498b-ab5b-079fe15f5975",
-			"name": "2.1 read client",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/read?id=1",
-			"time": 10,
+			"id": "7176b04a-1bf0-4fbf-bb91-2e419d97ea18",
+			"name": "1.5.5 update lawyer winrate too small",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+			"time": 7,
 			"responseCode": {
-				"code": 200,
-				"name": "OK"
+				"code": 400,
+				"name": "Bad Request"
 			},
 			"tests": {
-				"Status test": true,
-				"validate response": true
+				"Status test": true
 			},
 			"testPassFailCounts": {
 				"Status test": {
 					"pass": 1,
 					"fail": 0
-				},
-				"validate response": {
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "627f9ed0-61a2-4d95-bd66-3f909ed03799",
+			"name": "1.5.6 update lawyer winrate too big",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "9fcbdf7d-b88b-4ed0-91b0-3b2be7ad3fe7",
+			"name": "1.6 update lawyer not found ",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+			"time": 10,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
 					"pass": 1,
 					"fail": 0
 				}
@@ -765,15 +646,41 @@
 			],
 			"allTests": [
 				{
-					"Status test": true,
-					"validate response": true
+					"Status test": true
 				}
 			]
 		},
 		{
-			"id": "5ec9d0d2-1cd3-4211-8eb5-b7af8fbb4387",
-			"name": "2.1.1 read client missing id",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/read",
+			"id": "dc3e7f30-8dd4-44d2-8f00-9f80253b9b08",
+			"name": "1.7 delete lawyer",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete?id=1",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "c7888bfe-769e-483e-95a7-a4c03d9387c3",
+			"name": "1.7.1 delete lawyer missing id",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete",
 			"time": 4,
 			"responseCode": {
 				"code": 400,
@@ -798,9 +705,282 @@
 			]
 		},
 		{
+			"id": "aac74233-7fdb-4d83-a179-c8b1a6ad14b9",
+			"name": "1.7.2 delete lawyer invalid id",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete?id=1000",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "3a7e466d-3b5b-4e94-9b27-27a35204ebf2",
+			"name": "2.0 list all clients ",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/list",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "f3a90ce6-024d-498b-ab5b-079fe15f5975",
+			"name": "2.1 read client",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/read?id=1",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "5ec9d0d2-1cd3-4211-8eb5-b7af8fbb4387",
+			"name": "2.1.1 read client missing id",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/read",
+			"time": 6,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
 			"id": "74144de5-33bc-4d0f-bcdb-38f148a95f31",
 			"name": "2.1.2 read client invalid id",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/read?id=1000",
+			"time": 4,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "ff5fb510-2313-4581-9f4e-a6ac86afd1bf",
+			"name": "2.2 read client not found ",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/read?id=500",
+			"time": 5,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "7109c946-d51c-49e8-a94c-1161608b4052",
+			"name": "2.3 sort clients by firstname",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/list?sort=true",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				5
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "084bb36a-1d74-45e0-a1e3-ee8343ee7562",
+			"name": "2.4 add client",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+			"time": 7,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "fd69e491-d598-4289-ab73-52fb43b70c14",
+			"name": "2.4.1 add client name too short",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "ba105012-e703-432b-bd1a-cd4d1163c444",
+			"name": "2.4.2 add client name too long",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+			"time": 12,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "c8eacf08-addb-4983-bfae-d05f802013eb",
+			"name": "2.4.3 add client telNumber invalid (spaces)",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
 			"time": 7,
 			"responseCode": {
 				"code": 400,
@@ -825,80 +1005,8 @@
 			]
 		},
 		{
-			"id": "ff5fb510-2313-4581-9f4e-a6ac86afd1bf",
-			"name": "2.2 read client not found ",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/read?id=500",
-			"time": 19,
-			"responseCode": {
-				"code": 410,
-				"name": "Gone"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				19
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "7109c946-d51c-49e8-a94c-1161608b4052",
-			"name": "2.3 sort clients by firstname",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/list?sort=true",
-			"time": 26,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				26
-			],
-			"allTests": [
-				{}
-			]
-		},
-		{
-			"id": "084bb36a-1d74-45e0-a1e3-ee8343ee7562",
-			"name": "2.4 add client",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
-			"time": 36,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				36
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "fd69e491-d598-4289-ab73-52fb43b70c14",
-			"name": "2.4.1 add client name too short",
+			"id": "4a6736bb-cef6-488e-bfeb-d3b5a83b3b64",
+			"name": "2.4.4 add client telNumber too much digits",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
 			"time": 5,
 			"responseCode": {
@@ -924,91 +1032,10 @@
 			]
 		},
 		{
-			"id": "ba105012-e703-432b-bd1a-cd4d1163c444",
-			"name": "2.4.2 add client name too long",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
-			"time": 8,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				8
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "c8eacf08-addb-4983-bfae-d05f802013eb",
-			"name": "2.4.3 add client telNumber invalid (spaces)",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
-			"time": 8,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				8
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "4a6736bb-cef6-488e-bfeb-d3b5a83b3b64",
-			"name": "2.4.4 add client telNumber too much digits",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
-			"time": 19,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				19
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
 			"id": "1ba97b66-f1cb-43fd-8513-1f997d8ef2af",
 			"name": "2.4.5 add client telNumber not enough digits",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
-			"time": 11,
+			"time": 9,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1023,7 +1050,7 @@
 				}
 			},
 			"times": [
-				11
+				9
 			],
 			"allTests": [
 				{
@@ -1035,7 +1062,7 @@
 			"id": "a56166be-4965-4be6-a8e7-b6c09f303b45",
 			"name": "2.4.6 add client birthdate invalid",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
-			"time": 15,
+			"time": 8,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1050,7 +1077,7 @@
 				}
 			},
 			"times": [
-				15
+				8
 			],
 			"allTests": [
 				{
@@ -1089,6 +1116,141 @@
 			"id": "3e1a1663-c9f5-4565-a3e7-51e68aa836f7",
 			"name": "2.5.1 update client name too short",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+			"time": 14,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "567ac7fe-0286-4b34-a845-0fcbdc10351f",
+			"name": "2.5.2 update client name too long",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "1b2f1e51-e217-4633-9726-9f47263e7e85",
+			"name": "2.5.3 update client telNumber invalid (spaces)",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "b0fa6bce-d386-473a-a6c5-e8191b7d6563",
+			"name": "2.5.4 update client telNumber too much digits",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+			"time": 6,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "8cd94d1c-1cfd-43e5-be07-410c6ccbc443",
+			"name": "2.5.5 update client telNumber not enough digits",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "a4913645-bc6b-424c-9285-2c17889160b2",
+			"name": "2.5.6 update client birthdate invalid",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
 			"time": 7,
 			"responseCode": {
 				"code": 400,
@@ -1113,9 +1275,336 @@
 			]
 		},
 		{
-			"id": "567ac7fe-0286-4b34-a845-0fcbdc10351f",
-			"name": "2.5.2 update client name too long",
+			"id": "20d67b7f-f8be-443d-8e20-b5524f60b414",
+			"name": "2.6 update client not found",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+			"time": 4,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "226b4e45-4960-49f3-856c-45a135e96ba6",
+			"name": "2.7 delete client",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/delete?id=1",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "5568ec55-df15-4740-8f46-6b71ed988645",
+			"name": "2.7.1 delete client missing id",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/delete",
+			"time": 5,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "d4fbf45f-f8a1-4e0f-ab57-c65247a53cb7",
+			"name": "2.7.2 delete client invalid id",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/delete?id=1000",
+			"time": 10,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				10
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "5c2628f7-1f35-473b-8d5a-82571ce23072",
+			"name": "3.0 list all legal cases",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/list",
+			"time": 12,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				12
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "0239d700-7dda-4dc3-8b32-7d77aa8fb0a7",
+			"name": "3.1 read legal case",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=1",
+			"time": 5,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "9c5cc0b9-7400-4329-a92f-c40f96b6db23",
+			"name": "3.1.1 read legal case missing id",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read",
+			"time": 6,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "9963f1fa-cbc3-49fd-a61c-cf36e98f4937",
+			"name": "3.1.2 read legal case invalid id",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=1000",
+			"time": 8,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "89c493b9-e54d-4279-84db-e5db0a89c4d5",
+			"name": "3.2 read legal case not found",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=500",
+			"time": 4,
+			"responseCode": {
+				"code": 410,
+				"name": "Gone"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "48d094d7-8e4d-4184-bab1-e15bbfb6586a",
+			"name": "3.3 sort legal cases by accuser",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/list?sort=true",
+			"time": 4,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				4
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "e2ac2087-3a4b-47f3-bc03-5233ab689c34",
+			"name": "3.4 add legal case",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+			"time": 23,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				23
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "8ddd9f92-e1b3-49cf-a847-2cfd78bfad52",
+			"name": "3.4.1 add legal case accuser too short",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+			"time": 9,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				9
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "f60cb095-50ae-4ce7-91c6-399dd49f1d09",
+			"name": "3.4.2 add legal case accuser too long",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
 			"time": 18,
 			"responseCode": {
 				"code": 400,
@@ -1140,472 +1629,10 @@
 			]
 		},
 		{
-			"id": "1b2f1e51-e217-4633-9726-9f47263e7e85",
-			"name": "2.5.3 update client telNumber invalid (spaces)",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
-			"time": 26,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				26
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "b0fa6bce-d386-473a-a6c5-e8191b7d6563",
-			"name": "2.5.4 update client telNumber too much digits",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
-			"time": 12,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				12
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "8cd94d1c-1cfd-43e5-be07-410c6ccbc443",
-			"name": "2.5.5 update client telNumber not enough digits",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
-			"time": 7,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				7
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "a4913645-bc6b-424c-9285-2c17889160b2",
-			"name": "2.5.6 update client birthdate invalid",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
-			"time": 5,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				5
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "20d67b7f-f8be-443d-8e20-b5524f60b414",
-			"name": "2.6 update client not found",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
-			"time": 13,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				13
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "226b4e45-4960-49f3-856c-45a135e96ba6",
-			"name": "2.7 delete client",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/delete?id=1",
-			"time": 250,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				250
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "5568ec55-df15-4740-8f46-6b71ed988645",
-			"name": "2.7.1 delete client missing id",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/delete",
-			"time": 4,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				4
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "d4fbf45f-f8a1-4e0f-ab57-c65247a53cb7",
-			"name": "2.7.2 delete client invalid id",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/delete?id=1000",
-			"time": 7,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				7
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "5c2628f7-1f35-473b-8d5a-82571ce23072",
-			"name": "3.0 list all legal cases",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/list",
-			"time": 8,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status test": true,
-				"validate response": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				},
-				"validate response": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				8
-			],
-			"allTests": [
-				{
-					"Status test": true,
-					"validate response": true
-				}
-			]
-		},
-		{
-			"id": "0239d700-7dda-4dc3-8b32-7d77aa8fb0a7",
-			"name": "3.1 read legal case",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=1",
-			"time": 6,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status test": true,
-				"validate response": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				},
-				"validate response": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				6
-			],
-			"allTests": [
-				{
-					"Status test": true,
-					"validate response": true
-				}
-			]
-		},
-		{
-			"id": "9c5cc0b9-7400-4329-a92f-c40f96b6db23",
-			"name": "3.1.1 read legal case missing id",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read",
-			"time": 4,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				4
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "9963f1fa-cbc3-49fd-a61c-cf36e98f4937",
-			"name": "3.1.2 read legal case invalid id",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=1000",
-			"time": 11,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				11
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "89c493b9-e54d-4279-84db-e5db0a89c4d5",
-			"name": "3.2 read legal case not found",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=500",
-			"time": 5,
-			"responseCode": {
-				"code": 404,
-				"name": "Not Found"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				5
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "48d094d7-8e4d-4184-bab1-e15bbfb6586a",
-			"name": "3.3 sort legal cases by accuser",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/list?sort=true",
-			"time": 13,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {},
-			"testPassFailCounts": {},
-			"times": [
-				13
-			],
-			"allTests": [
-				{}
-			]
-		},
-		{
-			"id": "e2ac2087-3a4b-47f3-bc03-5233ab689c34",
-			"name": "3.4 add legal case",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
-			"time": 14,
-			"responseCode": {
-				"code": 200,
-				"name": "OK"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				14
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "8ddd9f92-e1b3-49cf-a847-2cfd78bfad52",
-			"name": "3.4.1 add legal case accuser too short",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
-			"time": 7,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				7
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
-			"id": "f60cb095-50ae-4ce7-91c6-399dd49f1d09",
-			"name": "3.4.2 add legal case accuser too long",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
-			"time": 6,
-			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
-			},
-			"tests": {
-				"Status test": true
-			},
-			"testPassFailCounts": {
-				"Status test": {
-					"pass": 1,
-					"fail": 0
-				}
-			},
-			"times": [
-				6
-			],
-			"allTests": [
-				{
-					"Status test": true
-				}
-			]
-		},
-		{
 			"id": "7a054ae8-baf1-4b6a-80a7-e4084a702784",
 			"name": "3.4.3 add legal case defendant too short",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
-			"time": 5,
+			"time": 9,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1620,7 +1647,7 @@
 				}
 			},
 			"times": [
-				5
+				9
 			],
 			"allTests": [
 				{
@@ -1632,7 +1659,7 @@
 			"id": "fbd48b42-b909-4d95-9682-f393492f7a4a",
 			"name": "3.4.4 add legal case defendant too long",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
-			"time": 8,
+			"time": 32,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1647,7 +1674,7 @@
 				}
 			},
 			"times": [
-				8
+				32
 			],
 			"allTests": [
 				{
@@ -1659,7 +1686,7 @@
 			"id": "d3795765-9f1e-4d9b-96e4-7e272035fd09",
 			"name": "3.5 update legal case",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
-			"time": 6,
+			"time": 759,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -1674,7 +1701,7 @@
 				}
 			},
 			"times": [
-				6
+				759
 			],
 			"allTests": [
 				{
@@ -1686,7 +1713,7 @@
 			"id": "f85db80f-64ec-4643-8612-2bb3665b6ed2",
 			"name": "3.5.1 update legal case accuser too short",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
-			"time": 6,
+			"time": 5,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1701,7 +1728,7 @@
 				}
 			},
 			"times": [
-				6
+				5
 			],
 			"allTests": [
 				{
@@ -1713,7 +1740,7 @@
 			"id": "ddfa7f1f-d205-4940-91db-274efa05df02",
 			"name": "3.5.2 update legal case accuser too long",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
-			"time": 7,
+			"time": 10,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1728,7 +1755,7 @@
 				}
 			},
 			"times": [
-				7
+				10
 			],
 			"allTests": [
 				{
@@ -1767,7 +1794,7 @@
 			"id": "b1d11a3d-7511-4fea-a16a-ae4767504ff5",
 			"name": "3.5.3 update legal case defendant too short",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
-			"time": 6,
+			"time": 7,
 			"responseCode": {
 				"code": 400,
 				"name": "Bad Request"
@@ -1782,7 +1809,7 @@
 				}
 			},
 			"times": [
-				6
+				7
 			],
 			"allTests": [
 				{
@@ -1794,7 +1821,7 @@
 			"id": "9e2aa8ac-0564-410a-ad7e-d7c666d31c8e",
 			"name": "3.6 update legal case not found",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
-			"time": 6,
+			"time": 14,
 			"responseCode": {
 				"code": 410,
 				"name": "Gone"
@@ -1809,7 +1836,7 @@
 				}
 			},
 			"times": [
-				6
+				14
 			],
 			"allTests": [
 				{
@@ -1821,10 +1848,211 @@
 			"id": "e25b2cd6-f39c-4957-b3cd-13ea538d7874",
 			"name": "3.7 delete legal case",
 			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete?id=1",
+			"time": 14,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "98aed687-7988-472d-94fc-d4d4dabd5bdb",
+			"name": "3.7.1 delete legal case missing id",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete",
+			"time": 7,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				7
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "ff40f1ca-986a-4fca-84d0-a369f1f24c5b",
+			"name": "3.7.2 delete legal case invalid id",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete?id=1000",
+			"time": 63,
+			"responseCode": {
+				"code": 400,
+				"name": "Bad Request"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				63
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "859b3a14-7283-4d0d-8362-7079765c7874",
+			"name": "4.1 login user",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/user/login",
+			"time": 154,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				154
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "65c17efc-f06f-4554-953d-c96ad9f91ee7",
+			"name": "4.1.1 list all lawyers",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/list",
+			"time": 38,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				38
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "884db113-c841-4ec4-b199-0f48bd6485b3",
+			"name": "4.1.2 read lawyer",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/read?id=3",
 			"time": 4,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "25538669-5e6d-4619-9ba6-8aaa956ee29f",
+			"name": "4.1.3 add lawyer unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+			"time": 5,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "28780fc2-7754-414a-9c1e-dba14c68719b",
+			"name": "4.1.4 update lawyer unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+			"time": 4,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
 			},
 			"tests": {
 				"Status test": true
@@ -1845,13 +2073,160 @@
 			]
 		},
 		{
-			"id": "98aed687-7988-472d-94fc-d4d4dabd5bdb",
-			"name": "3.7.1 delete legal case missing id",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete",
+			"id": "9c4cb23d-812c-4ed4-8360-f393b630d895",
+			"name": "4.1.5 delete lawyer unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete?id=1",
+			"time": 18,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				18
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "f90792ab-e3fc-4a2a-befb-e78529e01df1",
+			"name": "4.2.1 list all clients",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/list",
 			"time": 3,
 			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "dfa22e0c-1842-4117-a834-ccee0be905ee",
+			"name": "4.2.2 read client",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/read?id=2",
+			"time": 3,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "ab536baa-6af0-4916-bb53-38846650589c",
+			"name": "4.2.3 add client unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+			"time": 4,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "afeffd9d-9554-4db0-82fb-936eb5434487",
+			"name": "4.2.4 update client unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+			"time": 5,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "195afd2e-8664-4f2f-a683-beb8b32dcc13",
+			"name": "4.2.5 delete client unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/delete?id=1",
+			"time": 3,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
 			},
 			"tests": {
 				"Status test": true
@@ -1872,13 +2247,133 @@
 			]
 		},
 		{
-			"id": "ff40f1ca-986a-4fca-84d0-a369f1f24c5b",
-			"name": "3.7.2 delete legal case invalid id",
-			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete?id=1000",
+			"id": "991ac2e8-5001-4196-8674-50bec76295bb",
+			"name": "4.3.1 list all legal cases",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/list",
+			"time": 3,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "4c5e278d-3464-45b8-94ec-30f1032f54a9",
+			"name": "4.3.2 read legal case",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=2",
+			"time": 3,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true,
+				"validate response": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"validate response": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status test": true,
+					"validate response": true
+				}
+			]
+		},
+		{
+			"id": "68971435-dc07-4515-badb-5ad72edeeb40",
+			"name": "4.3.3 add legal case unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+			"time": 3,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "9bc44962-4dee-4fe3-9c1f-7c0895e8492c",
+			"name": "4.3.4 update legal case unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
+			"time": 5,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "fc5a8fbe-fce8-4ae0-ac08-b9bcf4902e75",
+			"name": "4.3.5 delete legal case unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete?id=1",
 			"time": 4,
 			"responseCode": {
-				"code": 400,
-				"name": "Bad Request"
+				"code": 401,
+				"name": "Unauthorized"
 			},
 			"tests": {
 				"Status test": true
@@ -1897,10 +2392,469 @@
 					"Status test": true
 				}
 			]
+		},
+		{
+			"id": "3daab034-963e-48dc-b56d-fbe62442f218",
+			"name": "4.4 login failed",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/user/login",
+			"time": 5,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "cdbd9ddb-0e29-4e86-8abe-4cecaeaa5827",
+			"name": "4.5 logout --> login as guest",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/user/logout",
+			"time": 6,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "9aac9986-b456-4b8d-a286-8dd66b22ef48",
+			"name": "4.5.1 list all lawyers unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/list",
+			"time": 4,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "bc3b8e15-af12-44e6-98aa-6aa77368b235",
+			"name": "4.5.2 read lawyer unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/read?id=1",
+			"time": 3,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "de59cc11-945a-4bbd-b126-4540bf3ad1f0",
+			"name": "4.5.3 add lawyer unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/create",
+			"time": 4,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "f042c9cc-6ef3-47b6-a33a-3d7a88f9e3a7",
+			"name": "4.5.4 update lawyer unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/update",
+			"time": 4,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "396ca3ed-36d7-41cd-aa83-7b0acb7c8818",
+			"name": "4.5.5 delete lawyer unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/lawyer/delete?id=1",
+			"time": 3,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "6ecb653d-200f-4deb-a528-487751e43e2c",
+			"name": "4.6.1 list all clients unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/list",
+			"time": 3,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				3
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "2e918e4c-7951-4ff5-8f9e-d68bc36779f9",
+			"name": "4.6.2 read client unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/read?id=1",
+			"time": 4,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "f4cd1997-d1c4-4b34-921b-d669c97813e3",
+			"name": "4.6.3 add client unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/create",
+			"time": 8,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				8
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "c12ca87a-3380-478f-859b-2f6c430cd13d",
+			"name": "4.6.4 update client unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/update",
+			"time": 17,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "01fd56e1-77e5-44e6-9c7c-376bd8b3bbca",
+			"name": "4.6.5 delete client unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/client/delete?id=1",
+			"time": 30,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				30
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "89e215ac-21ba-49bf-87af-88c53df2d8b1",
+			"name": "4.7.1 list all legal cases unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/list",
+			"time": 6,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				6
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "f305e1f2-293d-40d3-9153-ff374559c082",
+			"name": "4.7.2 read legal case unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/read?id=1",
+			"time": 5,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "9dea953d-f790-424a-ba0e-840ebcacb41a",
+			"name": "4.7.3 add legal case unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/create",
+			"time": 285,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				285
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "72e6b6f0-2a7e-4fc8-bf0c-4b3f2001bbcd",
+			"name": "4.7.4 update legal case unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/update",
+			"time": 132,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				132
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
+		},
+		{
+			"id": "ec5be8d2-6bbd-4ea9-8a56-ae24ea8e08f4",
+			"name": "4.7.5 delete legal case unauthorized",
+			"url": "http://localhost:8080/Lawfirm-1.0/resource/legalCase/delete?id=1",
+			"time": 28,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status test": true
+			},
+			"testPassFailCounts": {
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				28
+			],
+			"allTests": [
+				{
+					"Status test": true
+				}
+			]
 		}
 	],
 	"count": 1,
-	"totalTime": 4042,
+	"totalTime": 2244,
 	"collection": {
 		"requests": [
 			{
@@ -1910,6 +2864,10 @@
 			{
 				"id": "6fda5b7c-8629-4158-8006-17910b349a32",
 				"method": "GET"
+			},
+			{
+				"id": "8566877a-cc39-49a2-bbae-ff88d1156892",
+				"method": "POST"
 			},
 			{
 				"id": "a8d75504-9e6a-4963-8865-2b6c4d800388",
@@ -2181,6 +3139,138 @@
 			},
 			{
 				"id": "ff40f1ca-986a-4fca-84d0-a369f1f24c5b",
+				"method": "DELETE"
+			},
+			{
+				"id": "859b3a14-7283-4d0d-8362-7079765c7874",
+				"method": "POST"
+			},
+			{
+				"id": "65c17efc-f06f-4554-953d-c96ad9f91ee7",
+				"method": "GET"
+			},
+			{
+				"id": "884db113-c841-4ec4-b199-0f48bd6485b3",
+				"method": "GET"
+			},
+			{
+				"id": "25538669-5e6d-4619-9ba6-8aaa956ee29f",
+				"method": "POST"
+			},
+			{
+				"id": "28780fc2-7754-414a-9c1e-dba14c68719b",
+				"method": "PUT"
+			},
+			{
+				"id": "9c4cb23d-812c-4ed4-8360-f393b630d895",
+				"method": "DELETE"
+			},
+			{
+				"id": "f90792ab-e3fc-4a2a-befb-e78529e01df1",
+				"method": "GET"
+			},
+			{
+				"id": "dfa22e0c-1842-4117-a834-ccee0be905ee",
+				"method": "GET"
+			},
+			{
+				"id": "ab536baa-6af0-4916-bb53-38846650589c",
+				"method": "POST"
+			},
+			{
+				"id": "afeffd9d-9554-4db0-82fb-936eb5434487",
+				"method": "PUT"
+			},
+			{
+				"id": "195afd2e-8664-4f2f-a683-beb8b32dcc13",
+				"method": "DELETE"
+			},
+			{
+				"id": "991ac2e8-5001-4196-8674-50bec76295bb",
+				"method": "GET"
+			},
+			{
+				"id": "4c5e278d-3464-45b8-94ec-30f1032f54a9",
+				"method": "GET"
+			},
+			{
+				"id": "68971435-dc07-4515-badb-5ad72edeeb40",
+				"method": "POST"
+			},
+			{
+				"id": "9bc44962-4dee-4fe3-9c1f-7c0895e8492c",
+				"method": "PUT"
+			},
+			{
+				"id": "fc5a8fbe-fce8-4ae0-ac08-b9bcf4902e75",
+				"method": "DELETE"
+			},
+			{
+				"id": "3daab034-963e-48dc-b56d-fbe62442f218",
+				"method": "POST"
+			},
+			{
+				"id": "cdbd9ddb-0e29-4e86-8abe-4cecaeaa5827",
+				"method": "DELETE"
+			},
+			{
+				"id": "9aac9986-b456-4b8d-a286-8dd66b22ef48",
+				"method": "GET"
+			},
+			{
+				"id": "bc3b8e15-af12-44e6-98aa-6aa77368b235",
+				"method": "GET"
+			},
+			{
+				"id": "de59cc11-945a-4bbd-b126-4540bf3ad1f0",
+				"method": "POST"
+			},
+			{
+				"id": "f042c9cc-6ef3-47b6-a33a-3d7a88f9e3a7",
+				"method": "PUT"
+			},
+			{
+				"id": "396ca3ed-36d7-41cd-aa83-7b0acb7c8818",
+				"method": "DELETE"
+			},
+			{
+				"id": "6ecb653d-200f-4deb-a528-487751e43e2c",
+				"method": "GET"
+			},
+			{
+				"id": "2e918e4c-7951-4ff5-8f9e-d68bc36779f9",
+				"method": "GET"
+			},
+			{
+				"id": "f4cd1997-d1c4-4b34-921b-d669c97813e3",
+				"method": "POST"
+			},
+			{
+				"id": "c12ca87a-3380-478f-859b-2f6c430cd13d",
+				"method": "PUT"
+			},
+			{
+				"id": "01fd56e1-77e5-44e6-9c7c-376bd8b3bbca",
+				"method": "DELETE"
+			},
+			{
+				"id": "89e215ac-21ba-49bf-87af-88c53df2d8b1",
+				"method": "GET"
+			},
+			{
+				"id": "f305e1f2-293d-40d3-9153-ff374559c082",
+				"method": "GET"
+			},
+			{
+				"id": "9dea953d-f790-424a-ba0e-840ebcacb41a",
+				"method": "POST"
+			},
+			{
+				"id": "72e6b6f0-2a7e-4fc8-bf0c-4b3f2001bbcd",
+				"method": "PUT"
+			},
+			{
+				"id": "ec5be8d2-6bbd-4ea9-8a56-ae24ea8e08f4",
 				"method": "DELETE"
 			}
 		]

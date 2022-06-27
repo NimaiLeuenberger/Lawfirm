@@ -193,6 +193,7 @@ public class LawyerService{
             @QueryParam("id") String lawyerID
     ){
         int httpStatus;
+
         if (userRole == null || userRole.equals("guest") || userRole.equals("user")){
             httpStatus = 401;
         } else {

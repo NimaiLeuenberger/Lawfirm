@@ -36,19 +36,29 @@ public class ClientService {
     @Path("list")
     @Produces(MediaType.APPLICATION_JSON)
     public Response listClients(
+            @CookieParam("userRole") String userRole,
             @QueryParam("sort") boolean sort
     ){
-        List<Client> clientList = DataHandler.readAllClients();
-        if (sort){
-            Collections.sort(clientList, new Comparator<Client>() {
-                @Override
-                public int compare(Client c1, Client c2) {
-                    return c1.getName().compareTo(c2.getName());
-                }
-            });
+        int httpStatus;
+        List<Client> clientList = null;
+
+        if (userRole == null || userRole.equals("guest")){
+            httpStatus = 401;
+        } else {
+            httpStatus = 200;
+            clientList = DataHandler.readAllClients();
+            if (sort){
+                Collections.sort(clientList, new Comparator<Client>() {
+                    @Override
+                    public int compare(Client c1, Client c2) {
+                        return c1.getName().compareTo(c2.getName());
+                    }
+                });
+            }
         }
+
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity(clientList)
                 .build();
     }
@@ -64,14 +74,23 @@ public class ClientService {
     @Path("read")
     @Produces(MediaType.APPLICATION_JSON)
     public Response readClient(
+            @CookieParam("userRole") String userRole,
             @NotEmpty
             @Pattern(regexp = "[1-9][0-9]?[0-9]?")
             @QueryParam("id") String clientID
     ){
-        Client client = DataHandler.readClientByID(clientID);
-        int httpStatus = 200;
-        if (client == null){
-            httpStatus=410;
+        int httpStatus;
+        Client client = null;
+
+        if (userRole == null || userRole.equals("guest")){
+            httpStatus = 401;
+        } else {
+            client = DataHandler.readClientByID(clientID);
+            if (client == null){
+                httpStatus=410;
+            } else {
+                httpStatus = 200;
+            }
         }
         return Response
                 .status(httpStatus)
@@ -90,18 +109,26 @@ public class ClientService {
     @Path("create")
     @Produces(MediaType.TEXT_PLAIN)
     public Response insertClient(
+            @CookieParam("userRole") String userRole,
             @Valid @BeanParam Client client,
             @FormParam("legalCaseID") String legalCaseID,
             @FormParam("birthdate") @Birthdate(value = 1900)
                 String birthdate
     ){
-        client.setLegalCaseID(legalCaseID);
-        client.setClientID(newClientIDGenerator());
-        client.setBirthdate(birthdate);
+        int httpStatus;
 
-        DataHandler.insertClient(client);
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")){
+            httpStatus = 401;
+        } else {
+            httpStatus = 200;
+            client.setLegalCaseID(legalCaseID);
+            client.setClientID(newClientIDGenerator());
+            client.setBirthdate(birthdate);
+
+            DataHandler.insertClient(client);
+        }
         return Response
-                .status(200)
+                .status(httpStatus)
                 .entity("")
                 .build();
     }
@@ -128,22 +155,30 @@ public class ClientService {
     @Path("update")
     @Produces(MediaType.TEXT_PLAIN)
     public Response updateClient(
+            @CookieParam("userRole") String userRole,
             @Valid @BeanParam Client client,
             @FormParam("legalCaseID") String legalCaseID,
             @FormParam("birthdate") @Birthdate(value = 1900)
                 String birthdate
     ){
-        int httpStatus = 200;
-        Client oldClient = DataHandler.readClientByID(client.getClientID());
-        if (oldClient != null){
-            oldClient.setName(client.getName());
-            oldClient.setBirthdate(birthdate);
-            oldClient.setTelNumber(client.getTelNumber());
-            oldClient.setLegalCaseID(legalCaseID);
+        int httpStatus;
 
-            DataHandler.updateClient();
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")) {
+            httpStatus = 401;
         } else {
-            httpStatus = 410;
+            httpStatus = 200;
+
+            Client oldClient = DataHandler.readClientByID(client.getClientID());
+            if (oldClient != null){
+                oldClient.setName(client.getName());
+                oldClient.setBirthdate(birthdate);
+                oldClient.setTelNumber(client.getTelNumber());
+                oldClient.setLegalCaseID(legalCaseID);
+
+                DataHandler.updateClient();
+            } else {
+                httpStatus = 410;
+            }
         }
         return Response
                 .status(httpStatus)
@@ -161,13 +196,21 @@ public class ClientService {
     @Path("delete")
     @Produces(MediaType.TEXT_PLAIN)
     public Response deleteLawyer(
+            @CookieParam("userRole") String userRole,
             @NotEmpty
             @Pattern(regexp = "[1-9][0-9]?[0-9]?")
             @QueryParam("id") String clientID
     ){
-        int httpStatus = 200;
-        if (!DataHandler.deleteClient(clientID)){
-            httpStatus = 410;
+        int httpStatus;
+
+        if (userRole == null || userRole.equals("guest") || userRole.equals("user")) {
+            httpStatus = 401;
+        } else {
+            httpStatus = 200;
+
+            if (!DataHandler.deleteClient(clientID)){
+                httpStatus = 410;
+            }
         }
         return Response
                 .status(httpStatus)
