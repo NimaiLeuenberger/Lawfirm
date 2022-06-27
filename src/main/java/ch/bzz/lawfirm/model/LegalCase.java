@@ -7,7 +7,7 @@ import javax.ws.rs.FormParam;
 
 public class LegalCase {
     @FormParam("legalCaseID")
-    @Pattern(regexp = "[1-9][0-9]?[0-9]?")
+    @Pattern(regexp = "|[1-9][0-9]?[0-9]?")
     private String legalCaseID;
 
     @FormParam("accuser")

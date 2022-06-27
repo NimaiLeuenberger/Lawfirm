@@ -109,7 +109,7 @@ function showLegalCaseList(data) {
 
     });
 
-    if (userRole === "user" || userRole === "admin") {
+    if (userRole === "admin") {
         document.getElementById("addButton").innerHTML = "<a href='./legalcaseedit.html'>Neuer Rechtsfall</a>";
     }
 }

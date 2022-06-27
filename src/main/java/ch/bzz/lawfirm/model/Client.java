@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Client {
     @FormParam("clientID")
-    @Pattern(regexp = "[1-9][0-9]?[0-9]?")
+    @Pattern(regexp = "|[1-9][0-9]?[0-9]?")
     private String clientID;
 
     @FormParam("name")

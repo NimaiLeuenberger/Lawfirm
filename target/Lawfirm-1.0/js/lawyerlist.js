@@ -36,7 +36,7 @@ function readLawyers() {
         });
 }
 
-/**
+/*
 *
  * look up the search-fields and create the filter
  * @param event
@@ -79,15 +79,21 @@ function showLawyerlist(data) {
         let row = tBody.insertRow(-1);
 
         let button = document.createElement("button");
-        if (userRole === "user" || userRole === "admin")
+        if (userRole === "admin"){
             button.innerHTML = "&#9998;";
-        else
-            button.innerHTML = "&#128065;";
-        button.type = "button";
-        button.name = "editLawyer";
-        button.setAttribute("data-lawyerid", lawyer.lawyerID);
-        button.addEventListener("click", editLawyer);
-        row.insertCell(-1).appendChild(button);
+            button.type = "button";
+            button.name = "editLawyer";
+            button.setAttribute("data-lawyerid", lawyer.lawyerID);
+            button.addEventListener("click", editLawyer);
+            row.insertCell(-1).appendChild(button);
+        } else if (userRole === "user"){
+            button.innerHTML = "&#128065";
+            button.type = "button";
+            button.name = "readLawyer";
+            button.setAttribute("data-lawyerid", lawyer.lawyerID);
+            button.addEventListener("click", editLawyer);
+            row.insertCell(-1).appendChild(button);
+        }
 
         row.insertCell(-1).innerHTML = lawyer.name;
         row.insertCell(-1).innerHTML = lawyer.experience;
@@ -106,7 +112,7 @@ function showLawyerlist(data) {
 
     });
 
-    if (userRole === "user" || userRole === "admin") {
+    if (userRole === "admin") {
         document.getElementById("addButton").innerHTML = "<a href='./lawyeredit.html'>Neuer Anwalt</a>";
     }
 }
@@ -147,6 +153,7 @@ function deleteLawyer(event) {
 }
 
 function showHeadings() {
+    const userRole = getCookie("userRole");
     const ids = ["name", "experience", "winrate", "client"];
     const labels = ["Name", "Erfahrung (in Jahren)", "Gewinnrate", "Klient"];
 

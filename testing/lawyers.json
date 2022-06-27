@@ -1,16 +1,16 @@
 [
     {
-        "lawyerID": 2,
+        "lawyerID": 3,
         "name": "Robert Zane",
         "experience": 12,
-        "winrate": 82.3,
+        "winrate": 82.5,
         "clientID" : "2"
     },        
     {
         "lawyerID": 1,
         "name": "Harvey Spectre",
         "experience": 9,
-        "winrate": 99.6,
+        "winrate": 99.5,
         "clientID" : "2"
     }    
 ]
