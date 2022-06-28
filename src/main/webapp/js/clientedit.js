@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * saves the data of a book
+ * saves the data of a client
  */
 function saveClient(event) {
     event.preventDefault();
@@ -85,8 +85,8 @@ function readClient() {
 }
 
 /**
- * show the data of a book
- * @param data  the book-data
+ * show the data of a client
+ * @param data  the client-data
  */
 function showClient(data) {
     const userRole = getCookie("userRole");
@@ -102,7 +102,7 @@ function showClient(data) {
 }
 
 /**
- * reads all publishers as an array
+ * reads all legal cases as an array
  */
 function readLegalCases() {
     fetch("./resource/legalCase/list", {
@@ -125,7 +125,7 @@ function readLegalCases() {
 }
 
 /**
- * shows all publishers as a dropdown
+ * shows all legal cases as a dropdown
  * @param data
  */
 function showLegalCases(data) {
@@ -138,14 +138,8 @@ function showLegalCases(data) {
     })
 }
 
-function selectedClients(clientList) {
-    clientList.forEach(client => {
-        document.getElementById(client.clientID).selected = true;
-    })
-}
-
 /**
- * redirects to the bookshelf
+ * redirects to the clientlist
  * @param event  the click-event
  */
 function cancelEdit(event) {

@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * saves the data of a book
+ * saves the data of a legal case
  */
 function saveLegalCase(event) {
     event.preventDefault();
@@ -59,7 +59,7 @@ function saveLegalCase(event) {
 }
 
 /**
- * reads a lawyer
+ * reads a legal case
  */
 function readLegalCase() {
     const legalCaseID = getQueryParam("id");
@@ -84,8 +84,8 @@ function readLegalCase() {
 }
 
 /**
- * show the data of a book
- * @param data  the book-data
+ * show the data of a legal case
+ * @param data  the legal-case-data
  */
 function showLegalCase(data) {
     const userRole = getCookie("userRole");
@@ -93,13 +93,12 @@ function showLegalCase(data) {
     document.getElementById("accuser").value = data.accuser;
     document.getElementById("defendant").value = data.defendant;
 
-    //selectedClients(data.client);
     const locked =  !(userRole === "user" || userRole === "admin");
     lockForm("legalcaseeditForm", locked);
 }
 
 /**
- * redirects to the bookshelf
+ * redirects to the legalcaselist
  * @param event  the click-event
  */
 function cancelEdit(event) {

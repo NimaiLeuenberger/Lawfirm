@@ -2,22 +2,16 @@
  * view-controller for legalcaselist.html
  * @author Nimai Leuenberger
  */
-let delayTimer;
 
 document.addEventListener("DOMContentLoaded", () => {
     showHeadings();
     readLegalCases("","");
-
-    document.getElementById("search").addEventListener("keyup", searchLegalCases);
 });
 
 /**
- * reads all authors
- * @param field   the attribute to be used as a filter or sort
- * @param filter  the value to be filtered by
- * @param sort    the sort order
+ * reads all legal cases
  */
-function readLegalCases(field, filter, sort) {
+function readLegalCases() {
     let url = "./resource/legalCase/list";
 
     fetch(url, {
@@ -40,35 +34,8 @@ function readLegalCases(field, filter, sort) {
 }
 
 /**
- * look up the search-fields and create the filter
- * @param event
- *//*
-function searchLegalCases(event) {
-    const searchFields = ["legalCaseAccuser", "legalCaseDefendant"];
-    const element = event.target;
-    const field = element.id;
-    let filter = "";
-
-    searchFields.forEach(searchField => {
-        let element = document.getElementById(searchField);
-        if (searchField === field) {
-            filter = element.value;
-        } else {
-            element.value = "";
-        }
-
-    });
-    sessionStorage.setItem("filterField", field);
-    sessionStorage.setItem("filterValue", filter);
-
-    clearTimeout(delayTimer);
-    delayTimer = setTimeout(() => {
-        readLegalCases(field, filter);
-    }, 500);
-}*/
-/**
- * shows the authors as a table
- * @param data  the authors
+ * shows the legal cases as a table
+ * @param data  the legal cases
  */
 function showLegalCaseList(data) {
     const userRole = getCookie("userRole");
@@ -125,7 +92,7 @@ function editLegalCase(event) {
 }
 
 /**
- * deletes a author
+ * deletes a legal case
  * @param event  the click-event
  */
 function deleteLegalCase(event) {
