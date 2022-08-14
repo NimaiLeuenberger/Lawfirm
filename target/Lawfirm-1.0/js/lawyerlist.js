@@ -1,18 +1,15 @@
 /**
- * view-controller for bookshelf.html
- * @author Marcel Suter
+ * view-controller for lawyerlist.html
+ * @author Nimai Leuenberger
  */
-let delayTimer;
 
 document.addEventListener("DOMContentLoaded", () => {
     showHeadings();
     readLawyers();
-
-    //document.getElementById("search").addEventListener("keyup", searchLawyers);
 });
 
 /**
- * reads all books
+ * reads all lawyers
  */
 function readLawyers() {
     let url = "./resource/lawyer/list";
@@ -36,39 +33,9 @@ function readLawyers() {
         });
 }
 
-/*
-*
- * look up the search-fields and create the filter
- * @param event
-function searchLawyers(event) {
-    const searchFields = ["nameFilter", "experienceFilter", "winrateFilter", "clientFilter"]
-    const element = event.target;
-    const field = element.id;
-    let filter = "";
-
-    searchFields.forEach(searchField => {
-        let element = document.getElementById(searchField);
-        if (searchField === field) {
-            filter = element.value;
-        } else {
-            element.value = "";
-        }
-
-    });
-    sessionStorage.setItem("filterField", field);
-    sessionStorage.setItem("filterValue", filter);
-
-    clearTimeout(delayTimer);
-    delayTimer = setTimeout(() => {
-
-        readLawyers();
-    }, 500);
-}
- */
-
 /**
- * shows the booklist as a table
- * @param data  the books
+ * shows the lawyerlist as a table
+ * @param data  the lawyers
  */
 function showLawyerlist(data) {
     const userRole = getCookie("userRole");
@@ -128,7 +95,7 @@ function editLawyer(event) {
 }
 
 /**
- * deletes a book
+ * deletes a lawyer
  * @param event  the click-event
  */
 function deleteLawyer(event) {
@@ -162,7 +129,13 @@ function showHeadings() {
     row.insertCell(-1);
     for (let i=0; i<labels.length; i++) {
         let cell = row.insertCell(-1);
-        cell.innerHTML = labels[i] + "&darr;";
+        cell.innerHTML = labels[i];
         cell.id=ids[i];
     }
+
+    // make a table padding here, it doesn't work in css
+    // because the cells that are getting created here are
+    // overwriting the css in the lawfirm.css file
+    let t = document.getElementById("lawyerlist");
+    t.cellPadding = '5';
 }

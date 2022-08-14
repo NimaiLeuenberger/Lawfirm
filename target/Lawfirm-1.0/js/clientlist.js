@@ -2,17 +2,14 @@
  * view-controller for clientlist.html
  * @author Nimai Leuenberger
  */
-let delayTimer;
 
 document.addEventListener("DOMContentLoaded", () => {
     showHeadings();
     readClients("","");
-
-    //document.getElementById("search").addEventListener("keyup", searchClients);
 });
 
 /**
- * reads all publishers
+ * reads all clients
  */
 function readClients() {
     let url = "./resource/client/list";
@@ -37,35 +34,8 @@ function readClients() {
 }
 
 /**
- * look up the search-fields and create the filter
- * @param event
- *//*
-function searchClients(event) {
-    const searchFields = ["clientName", "clientBirthdate", "clientTelNumber", "legalCase"]
-    const element = event.target;
-    const field = element.id;
-    let filter = "";
-
-    searchFields.forEach(searchField => {
-        let element = document.getElementById(searchField);
-        if (searchField === field) {
-            filter = element.value;
-        } else {
-            element.value = "";
-        }
-
-    });
-    sessionStorage.setItem("filterField", field);
-    sessionStorage.setItem("filterValue", filter);
-
-    clearTimeout(delayTimer);
-    delayTimer = setTimeout(() => {
-        readClients();
-    }, 500);
-}*/
-/**
- * shows the publishers as a table
- * @param data  the publishers
+ * shows the clients as a table
+ * @param data  the clients
  */
 function showClientList(data) {
     const userRole = getCookie("userRole");
@@ -90,6 +60,8 @@ function showClientList(data) {
             button.setAttribute("data-clientid", client.clientID);
             button.addEventListener("click", editClient);
             row.insertCell(-1).appendChild(button);
+        } else if (userRole === "guest"){
+            return;
         }
 
         row.insertCell(-1).innerHTML = client.name;
@@ -126,7 +98,7 @@ function editClient(event) {
 }
 
 /**
- * deletes a publisher
+ * deletes a client
  * @param event  the click-event
  */
 function deleteClient(event) {
@@ -159,7 +131,10 @@ function showHeadings() {
     row.insertCell(-1);
     for (let i=0; i<labels.length; i++) {
         let cell = row.insertCell(-1);
-        cell.innerHTML = labels[i] + "&darr;";
+        cell.innerHTML = labels[i];
         cell.id=ids[i];
     }
+
+    let t = document.getElementById("clientlist");
+    t.cellPadding = '5';
 }

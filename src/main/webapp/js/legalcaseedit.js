@@ -63,24 +63,27 @@ function saveLegalCase(event) {
  */
 function readLegalCase() {
     const legalCaseID = getQueryParam("id");
-
-    fetch("./resource/legalCase/read?id=" + legalCaseID, {
-        headers: { "Authorization": "Bearer "}
-    })
-        .then(function (response) {
-            if (response.ok) {
-                return response;
-            } else {
-                console.log(response);
-            }
+    if (legalCaseID != null){
+        fetch("./resource/legalCase/read?id=" + legalCaseID, {
+            headers: { "Authorization": "Bearer "}
         })
-        .then(response => response.json())
-        .then(data => {
-            showLegalCase(data);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                if (response.ok) {
+                    return response;
+                } else {
+                    console.log(response);
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                showLegalCase(data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    } else {
+        document.getElementById("title").innerHTML = "Neuer Rechtsfall";
+    }
 }
 
 /**

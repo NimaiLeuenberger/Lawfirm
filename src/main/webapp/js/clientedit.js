@@ -65,23 +65,27 @@ function saveClient(event) {
  */
 function readClient() {
     const clientID = getQueryParam("id");
-    fetch("./resource/client/read?id=" + clientID, {
-        headers: { "Authorization": "Bearer "}
-    })
-        .then(function (response) {
-            if (response.ok) {
-                return response;
-            } else {
-                console.log(response);
-            }
+    if (clientID != null){
+        fetch("./resource/client/read?id=" + clientID, {
+            headers: { "Authorization": "Bearer "}
         })
-        .then(response => response.json())
-        .then(data => {
-            showClient(data);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                if (response.ok) {
+                    return response;
+                } else {
+                    console.log(response);
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                showClient(data);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    } else {
+        document.getElementById("title").innerHTML = "Neuer Klient";
+    }
 }
 
 /**

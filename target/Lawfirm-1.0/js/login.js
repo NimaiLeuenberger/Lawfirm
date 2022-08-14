@@ -31,7 +31,7 @@ function loginUser(event) {
 }
 
 /**
- * save the JWToken and redirect
+ * redirects to the lawyerlist
  * @param response
  */
 function loginSuccess(response) {

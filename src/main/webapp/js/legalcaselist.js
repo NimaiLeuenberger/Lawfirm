@@ -44,6 +44,7 @@ function showLegalCaseList(data) {
     tBody.innerHTML = "";
     data.forEach(legalCase => {
         let row = tBody.insertRow(-1);
+
         let button = document.createElement("button");
         if (userRole === "admin"){
             button.innerHTML = "&#9998;";
@@ -125,7 +126,10 @@ function showHeadings() {
     row.insertCell(-1);
     for (let i=0; i<labels.length; i++) {
         let cell = row.insertCell(-1);
-        cell.innerHTML = labels[i] + "&darr;";
+        cell.innerHTML = labels[i];
         cell.id=ids[i];
     }
+
+    let t = document.getElementById("legalCasesList");
+    t.cellPadding = '5';
 }

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /**
- * saves the data of a book
+ * saves the data of a lawyer
  */
 function saveLawyer(event) {
     event.preventDefault();
@@ -64,9 +64,10 @@ function saveLawyer(event) {
  */
 function readLawyer() {
     const lawyerID = getQueryParam("id");
-    fetch("./resource/lawyer/read?id=" + lawyerID, {
-        headers: { "Authorization": "Bearer "}
-    })
+    if (lawyerID != null){
+        fetch("./resource/lawyer/read?id=" + lawyerID, {
+            headers: { "Authorization": "Bearer "}
+        })
         .then(function (response) {
             if (response.ok) {
                 return response;
@@ -81,11 +82,14 @@ function readLawyer() {
         .catch(function (error) {
             console.log(error);
         });
+    } else {
+          document.getElementById("title").innerHTML = "Neuer Anwalt";
+    }
 }
 
 /**
- * show the data of a book
- * @param data  the book-data
+ * show the data of a lawyer
+ * @param data  the lawyer-data
  */
 function showLawyer(data) {
     const userRole = getCookie("userRole");
@@ -95,13 +99,12 @@ function showLawyer(data) {
     document.getElementById("winrate").value = data.winrate;
     document.getElementById("client").value = data.client;
 
-    //selectedClients(data.client);
     const locked =  !(userRole === "user" || userRole === "admin");
     lockForm("lawyereditForm", locked);
 }
 
 /**
- * reads all publishers as an array
+ * reads all clients as an array
  */
 function readClients() {
     fetch("./resource/client/list", {
@@ -124,7 +127,7 @@ function readClients() {
 }
 
 /**
- * shows all publishers as a dropdown
+ * shows all clients as a dropdown
  * @param data
  */
 function showClients(data) {
@@ -138,7 +141,7 @@ function showClients(data) {
 }
 
 /**
- * redirects to the bookshelf
+ * redirects to the lawyerlist
  * @param event  the click-event
  */
 function cancelEdit(event) {

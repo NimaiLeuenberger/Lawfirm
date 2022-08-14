@@ -129,7 +129,13 @@ function showHeadings() {
     row.insertCell(-1);
     for (let i=0; i<labels.length; i++) {
         let cell = row.insertCell(-1);
-        cell.innerHTML = labels[i] + "&darr;";
+        cell.innerHTML = labels[i];
         cell.id=ids[i];
     }
+
+    // make a table padding here, it doesn't work in css
+    // because the cells that are getting created here are
+    // overwriting the css in the lawfirm.css file
+    let t = document.getElementById("lawyerlist");
+    t.cellPadding = '5';
 }

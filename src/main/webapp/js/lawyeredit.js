@@ -64,9 +64,10 @@ function saveLawyer(event) {
  */
 function readLawyer() {
     const lawyerID = getQueryParam("id");
-    fetch("./resource/lawyer/read?id=" + lawyerID, {
-        headers: { "Authorization": "Bearer "}
-    })
+    if (lawyerID != null){
+        fetch("./resource/lawyer/read?id=" + lawyerID, {
+            headers: { "Authorization": "Bearer "}
+        })
         .then(function (response) {
             if (response.ok) {
                 return response;
@@ -81,6 +82,9 @@ function readLawyer() {
         .catch(function (error) {
             console.log(error);
         });
+    } else {
+          document.getElementById("title").innerHTML = "Neuer Anwalt";
+    }
 }
 
 /**

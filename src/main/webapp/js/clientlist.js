@@ -2,7 +2,6 @@
  * view-controller for clientlist.html
  * @author Nimai Leuenberger
  */
-let delayTimer;
 
 document.addEventListener("DOMContentLoaded", () => {
     showHeadings();
@@ -61,6 +60,8 @@ function showClientList(data) {
             button.setAttribute("data-clientid", client.clientID);
             button.addEventListener("click", editClient);
             row.insertCell(-1).appendChild(button);
+        } else if (userRole === "guest"){
+            return;
         }
 
         row.insertCell(-1).innerHTML = client.name;
@@ -130,7 +131,10 @@ function showHeadings() {
     row.insertCell(-1);
     for (let i=0; i<labels.length; i++) {
         let cell = row.insertCell(-1);
-        cell.innerHTML = labels[i] + "&darr;";
+        cell.innerHTML = labels[i];
         cell.id=ids[i];
     }
+
+    let t = document.getElementById("clientlist");
+    t.cellPadding = '5';
 }
